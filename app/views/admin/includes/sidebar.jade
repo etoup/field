@@ -1,0 +1,107 @@
+// sidebar: style can be found in sidebar.less
+section.sidebar
+  // Sidebar user panel
+  .user-panel
+    .pull-left.image
+      img.img-circle(src='/libs/AdminLTE/dist/img/user2-160x160.jpg', alt='User Image')           
+    .pull-left.info
+      p 用户名   
+      a(href='#')
+        i.fa.fa-circle.text-success
+        |  登录时间：15-09-09 08:30
+  // search form
+  form.sidebar-form(action='#', method='get')
+    .input-group
+      input.form-control(type='text', name='q', placeholder='搜索...')        
+      span.input-group-btn
+        button#search-btn.btn.btn-flat(type='submit', name='search')
+          i.fa.fa-search
+  // sidebar menu: : style can be found in sidebar.less
+  ul.sidebar-menu
+    li.header 导航列表  
+    li.active
+      a(href='#')
+        i.fa.fa-dashboard
+        span 后台首页
+    li
+    li.treeview
+      a(href='#')
+        i.fa.fa-gears
+        span 系统设置
+        i.fa.fa-angle-left.pull-right
+      ul.treeview-menu
+        li
+          a(href='/operator/picture')
+            i.fa.fa-circle-o
+            |  全局设置            
+        li
+          a(href='index2.html')
+            i.fa.fa-circle-o
+            |  积分设置
+        li
+          a(href='index2.html')
+            i.fa.fa-circle-o
+            |  签到设置
+        li
+          a(href='index2.html')
+            i.fa.fa-circle-o
+            |  邀请码设置
+        li
+          a(href='index2.html')
+            i.fa.fa-circle-o
+            |  优惠码设置
+    li.treeview
+      a(href='#')
+        i.fa.fa-group                
+        span 用户管理            
+        span.label.label-primary.pull-right 4  
+      ul.treeview-menu
+        li
+          a(href='pages/layout/top-nav.html')
+            i.fa.fa-circle-o
+            |  Top Navigation                
+        li
+          a(href='pages/layout/boxed.html')
+            i.fa.fa-circle-o
+            |  Boxed             
+        li
+          a(href='pages/layout/fixed.html')
+            i.fa.fa-circle-o
+            |  Fixed             
+        li
+          a(href='pages/layout/collapsed-sidebar.html')
+            i.fa.fa-circle-o
+            |  Collapsed Sidebar
+    li
+      a(href='pages/widgets.html')
+        i.fa.fa-th
+        span 场馆管理
+        small.label.pull-right.bg-green new  
+    li
+      a(href='pages/calendar.html')
+        i.fa.fa-calendar
+        span 订单管理           
+        small.label.pull-right.bg-red 3  
+    li
+      a(href='pages/mailbox/mailbox.html')
+        i.fa.fa-briefcase
+        span 规则管理             
+        small.label.pull-right.bg-yellow 12  
+    li
+      a(href='pages/mailbox/mailbox.html')
+        i.fa.fa-calculator
+        span 结算管理             
+        small.label.pull-right.bg-yellow 12  
+    li.header 快捷操作
+    li
+      a(href='#')
+        i.fa.fa-circle-o.text-red
+        span 用户列表      
+    li
+      a(href='#')
+        i.fa.fa-circle-o.text-yellow
+        span 场馆列表       
+    li
+      a(href='#')
+        i.fa.fa-circle-o.text-aqua
+        span 订单列表
