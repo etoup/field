@@ -25,15 +25,15 @@ html
           a(href='/admin') LOGO
         .register-box-body
           p.login-box-msg 注册初始管理账号   
-          form(action='../../index.html', method='post')  
+          form(action='/admin/reg', method='post')  
             .form-group.has-feedback
-              input.form-control(type='email', placeholder='邮箱')  
+              input.form-control(type='email',name='user[email]',placeholder='邮箱')  
               span.glyphicon.glyphicon-envelope.form-control-feedback        
             .form-group.has-feedback
-              input.form-control(type='password', placeholder='密码')     
+              input.form-control(type='password', name='user[password]',placeholder='密码')     
               span.glyphicon.glyphicon-lock.form-control-feedback      
             .form-group.has-feedback
-              input.form-control(type='password', placeholder='重复密码')         
+              input.form-control(type='password', name='user[repassword]',placeholder='重复密码')         
               span.glyphicon.glyphicon-log-in.form-control-feedback     
             .row
               .col-xs-8

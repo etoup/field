@@ -6,12 +6,10 @@ module.exports = function(app) {
   })
   // 后台首页
   app.get('/admin', admin.index);
+  // 后台初始化注册
+  app.route('/admin/reg').get(admin.reg).post(admin.doreg);
   // 后台登录
-  app.get('/admin/login', function(req, res, next) {
-    res.render('admin/login', { title: '后台登录' });
-  });
-  // 后台注册
-  app.get('/admin/reg', function(req, res, next) {
-    res.render('admin/reg', { title: '后台初始化注册' });
-  });
+  app.route('/admin/login').get(admin.login).post(admin.dologin);
+  // 后台登出
+  app.get('/admin/logout', admin.logout);
 }

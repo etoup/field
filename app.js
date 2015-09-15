@@ -3,12 +3,40 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var cookieSession = require('cookie-session');
+var session = require('express-session');
 var bodyParser = require('body-parser');
+// var multer  = require('multer');
 var mongoose = require('mongoose');
+var mongoStore = require('connect-mongo')(session);
+var flash = require('req-flash');
+var fs = require('fs');
+
 
 var app = express();
+var dbUrl = 'mongodb://localhost/fields';
+mongoose.connect(dbUrl);
+// models loading
+var models_path = __dirname + '/app/models';
+var walk = function(path) {
+  fs
+    .readdirSync(path)
+    .forEach(function(file) {
+      var newPath = path + '/' + file;
+      var stat = fs.statSync(newPath);
 
-mongoose.connect('mongodb://localhost/fields');
+      if (stat.isFile()) {
+        if (/(.*)\.(js|coffee)/.test(file)) {
+          require(newPath);
+        }
+      }
+      else if (stat.isDirectory()) {
+        walk(newPath);
+      }
+    })
+};
+walk(models_path);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'jade');
@@ -17,9 +45,20 @@ app.set('view engine', 'jade');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(multer());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'fields',
+  resave: false,
+  saveUninitialized: true,
+  store: new mongoStore({
+    url: dbUrl,
+    collection: 'sessions'
+  })
+}));
+//app.use(flash());
 
 require('./routes/admin')(app); 
 
