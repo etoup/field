@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    include ./includes/head
+  body.hold-transition.skin-blue.sidebar-mini
+    div.wrapper
+      header.main-header
+        include ./includes/header
+      aside.main-sidebar
+        include ./includes/sidebar
+      div.content-wrapper
+        section.content-header
+          include ./includes/top
+        section.content
+          block content
+      div.main-footer
+        include ./includes/footer
+    include ./includes/foot
