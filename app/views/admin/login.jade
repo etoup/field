@@ -15,6 +15,9 @@ html
     link(rel='stylesheet', href='/libs/AdminLTE/dist/css/AdminLTE.min.css')
     // iCheck
     link(rel='stylesheet', href='/libs/AdminLTE/plugins/iCheck/square/blue.css')
+    //jgrowl
+    link(rel='stylesheet', href='/libs/jGrowl/jquery.jgrowl.min.css')
+    link(rel='stylesheet', href='/stylesheets/jgrowl-theme.css')
     <!--[if lt IE 9]>
     script(src='https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js')
     script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
@@ -25,18 +28,18 @@ html
         a(href='/admin') LOGO
       .login-box-body
         p.login-box-msg 登录后进入管理后台      
-        form(action='/admin/login', method='post')
+        form#form(action='/admin/login', method='post')
           .form-group.has-feedback
-            input.form-control(type='email', name='user[email]' ,placeholder='邮箱')       
+            input.form-control(type='email', name='email', id="email",value=username ,placeholder='邮箱')       
             span.glyphicon.glyphicon-envelope.form-control-feedback   
           .form-group.has-feedback
-            input.form-control(type='password', name='user[password]', placeholder='密码')         
+            input.form-control(type='password', name='password',id="password", placeholder='密码')         
             span.glyphicon.glyphicon-lock.form-control-feedback      
           .row
             .col-xs-8
               .checkbox.icheck
                 label
-                  input(type='checkbox')
+                  input(type='checkbox',name='rememberme',value='1')
                   |  记住我
             // /.col
             .col-xs-4
@@ -54,6 +57,8 @@ html
   script(src='/libs/AdminLTE/bootstrap/js/bootstrap.min.js')
   // iCheck
   script(src='/libs/AdminLTE/plugins/iCheck/icheck.min.js')
+  // jgrowl
+  script(src='/libs/jGrowl/jquery.jgrowl.min.js')
   script.
     $(function () {
       $('input').iCheck({
@@ -62,3 +67,10 @@ html
         increaseArea: '20%' // optional
       });
     });
+  if flash.msg 
+    script.
+      $.jGrowl("#{flash.msg}", {
+        life: 2000,
+        theme:  'manilla',
+        speed:  'slow'
+      });

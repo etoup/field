@@ -6,9 +6,11 @@ exports.index = function(req, res) {
   console.log(req.session.user)
   var user = req.session.user
   if(user){
+    var flash = req.flash() 
     res.render('admin/index', {
       title: '后台管理',
-      user:user
+      user:user,
+      flash:flash
     })
   }else{
     res.redirect('/admin/login')
@@ -51,8 +53,10 @@ exports.login = function(req, res) {
       console.log(err)
     }
     if(user){
+      var username = req.cookies.username
       res.render('admin/login', {
-        title: '后台登录'
+        title: '后台登录',
+        username:username
       })
     }
     res.render('admin/login', {
@@ -64,23 +68,32 @@ exports.login = function(req, res) {
 
 // login
 exports.dologin = function(req, res) {
-  var _user = req.body.user
-  var email = _user.email
-  var password = _user.password
+  var email = req.body.email
+  var password = req.body.password
+  var rememberme = req.body.rememberme
+ 
   User.findOne({email:email},function(err,user){
     if (err) {
       console.log(err)
     }
-    user.comparePassword(password, function(err, isMatch) {
-      if (err) {
-        console.log(err)
-      }
-      if (isMatch) {
-        req.session.user = user
-        req.flash('successMessage', 'You are successfully using req-flash')
-        res.redirect('/admin')
-      }
-    })
+    if(password){
+      user.comparePassword(password, function(err, isMatch) {
+        if (err) {
+          console.log(err)
+        }
+        if (isMatch) {
+          req.session.user = user
+          req.flash('msg', '登录成功')
+          if(rememberme){
+            res.cookie('username', email , { expires: new Date(Date.now() + 900000), httpOnly: true })
+          }
+          res.redirect('/admin')
+        }else{
+          req.flash('msg', '用户名或者密码错误')
+          res.redirect('/admin/login')
+        }
+      })
+    }
   })
 }
 

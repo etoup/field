@@ -1,0 +1,12 @@
+.jGrowl.top-right{
+  top: 45px;
+  right: 5px;
+}
+.jGrowl .manilla {
+  background-color: #ff851b;
+  color: #ffffff;
+  border-radius: 2px;
+}
+.jGrowl .manilla .jGrowl-message{
+  font-size: 16px;
+}

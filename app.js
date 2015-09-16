@@ -46,6 +46,7 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(expressValidator([options]));
 // app.use(multer());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -58,7 +59,7 @@ app.use(session({
     collection: 'sessions'
   })
 }));
-//app.use(flash());
+app.use(flash({ locals: 'flash' }));
 
 require('./routes/admin')(app); 
 
