@@ -15,6 +15,9 @@ html
     link(rel='stylesheet', href='/libs/AdminLTE/dist/css/AdminLTE.min.css')
     // iCheck
     link(rel='stylesheet', href='/libs/AdminLTE/plugins/iCheck/square/blue.css')
+    // jgrowl
+    link(rel='stylesheet', href='/libs/jGrowl/jquery.jgrowl.min.css')
+    link(rel='stylesheet', href='/stylesheets/jgrowl-theme.css')
     <!--[if lt IE 9]>
     script(src='https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js')
     script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
@@ -25,20 +28,20 @@ html
           a(href='/admin') LOGO
         .register-box-body
           p.login-box-msg 注册初始管理账号   
-          form(action='/admin/reg', method='post')  
+          form(id='form',action='/admin/reg', method='post')  
             .form-group.has-feedback
-              input.form-control(type='email',name='user[email]',placeholder='邮箱')  
+              input.form-control(type='email',name='user[email]',check-type='mail required',mail-message='请填写邮箱地址',placeholder='邮箱')  
               span.glyphicon.glyphicon-envelope.form-control-feedback        
             .form-group.has-feedback
-              input.form-control(type='password', name='user[password]',placeholder='密码')     
+              input.form-control(type='password', name='user[password]',check-type='required',required-message='请填写登录密码',placeholder='密码')     
               span.glyphicon.glyphicon-lock.form-control-feedback      
             .form-group.has-feedback
-              input.form-control(type='password', name='user[repassword]',placeholder='重复密码')         
+              input.form-control(type='password', name='user[repassword]',check-type='required',required-message='请重复登录密码',placeholder='重复密码')         
               span.glyphicon.glyphicon-log-in.form-control-feedback     
             .row
               .col-xs-8
               .col-xs-4
-                button.btn.btn-primary.btn-block.btn-flat(type='submit') 注册
+                button.btn.btn-primary.btn-block.btn-flat(id='submit',type='submit') 注册
           .social-auth-links.text-center
             p - OR -            
             a.btn.btn-block.btn-social.btn-google.btn-flat(href='login')
@@ -50,6 +53,10 @@ html
   script(src='/libs/AdminLTE/bootstrap/js/bootstrap.min.js')
   // iCheck
   script(src='/libs/AdminLTE/plugins/iCheck/icheck.min.js')
+  // jgrowl
+  script(src='/libs/jGrowl/jquery.jgrowl.min.js')
+  // jqBootstrapValidation
+  script(src='/libs/bootstrap3-validation/src/bootstrap3-validation.js')
   script.
     $(function () {
       $('input').iCheck({
@@ -57,4 +64,25 @@ html
         radioClass: 'iradio_square-blue',
         increaseArea: '20%' // optional
       });
+
+      $("#form").validation({icon:true});
+
+      $("#submit").on('click',function(event){
+        if ($("#form").valid()==false){
+          $.jGrowl("信息填写不正确", {
+            life: 2000,
+            theme:  'manilla',
+            speed:  'slow'
+          });
+          return false;
+        }
+      });
     });
+  if flash.errors
+    each item in flash.errors
+      script.
+        $.jGrowl("#{item.msg}", {
+          life: 2000,
+          theme:  'manilla',
+          speed:  'slow'
+        });

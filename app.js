@@ -11,9 +11,10 @@ var mongoose = require('mongoose');
 var mongoStore = require('connect-mongo')(session);
 var flash = require('req-flash');
 var fs = require('fs');
-
+var expressValidator = require('express-validator');
 
 var app = express();
+
 var dbUrl = 'mongodb://localhost/fields';
 mongoose.connect(dbUrl);
 // models loading
@@ -46,7 +47,7 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-//app.use(expressValidator([options]));
+app.use(expressValidator());
 // app.use(multer());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -96,5 +97,5 @@ app.use(function(err, req, res, next) {
   });
 });
 
-
+app.locals.moment = require('moment');
 module.exports = app;

@@ -16,6 +16,11 @@ var UserSchema = new mongoose.Schema({
     type: String
   },
   password: String,
+  ip: String,
+  lastLoginAt:  {
+      type: Date,
+      default: Date.now()
+    },
   // 0: nomal user
   // 1: verified user
   // 2: professonal user
