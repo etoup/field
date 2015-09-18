@@ -62,7 +62,9 @@ app.use(session({
 }));
 app.use(flash({ locals: 'flash' }));
 
-require('./routes/admin')(app); 
+require('./routes/admin/index')(app); 
+require('./routes/admin/uc')(app); 
+require('./routes/admin/setting')(app); 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

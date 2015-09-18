@@ -23,9 +23,27 @@ section.sidebar
       if item.child
         li.treeview
           a(href='#')
-            i.fa.fa-th
-            span #{item.title}
-            small.label.pull-right.bg-green new
+            i.fa(class='#{item.icon}')
+            case item.style
+              when 0
+                span #{item.title}
+              when 1
+                span #{item.title}
+                i.fa.fa-angle-left.pull-right
+              when 2
+                span #{item.title}
+                small.label.pull-right.bg-green new  
+              when 3
+                span #{item.title}
+                span.label.label-primary.pull-right 4  
+              when 4
+                span #{item.title}
+                small.label.pull-right.bg-red 3 
+              when 5
+                span #{item.title}
+                small.label.pull-right.bg-yellow 12  
+              default
+                span #{item.title}
           ul.treeview-menu
             each val in  item.child
               li
@@ -35,9 +53,27 @@ section.sidebar
       else
         li
           a(href='#{item.url}')
-            i.fa.fa-th
-            span #{item.title}
-            small.label.pull-right.bg-green new  
+            i.fa(class='#{item.icon}')
+            case item.style
+              when 0
+                span #{item.title}
+              when 1
+                span #{item.title}
+                i.fa.fa-angle-left.pull-right
+              when 2
+                span #{item.title}
+                small.label.pull-right.bg-green new  
+              when 3
+                span #{item.title}
+                span.label.label-primary.pull-right 4  
+              when 4
+                span #{item.title}
+                small.label.pull-right.bg-red 3 
+              when 5
+                span #{item.title}
+                small.label.pull-right.bg-yellow 12  
+              default
+                span #{item.title}
     
     li.header 快捷操作
     li

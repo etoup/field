@@ -1,0 +1,54 @@
+// sidebar: style can be found in sidebar.less
+section.sidebar
+  // Sidebar user panel
+  .user-panel
+    .pull-left.image
+      img.img-circle(src='/libs/AdminLTE/dist/img/user2-160x160.jpg', alt='User Image')           
+    .pull-left.info
+      p #{user.email}   
+      a(href='#')
+        i.fa.fa-circle.text-success
+        |  上次登录：#{moment(user.lastLoginAt).format('YY-MM-DD HH:mm')}
+  // search form
+  form.sidebar-form(action='#', method='get')
+    .input-group
+      input.form-control(type='text', name='q', placeholder='搜索...')        
+      span.input-group-btn
+        button#search-btn.btn.btn-flat(type='submit', name='search')
+          i.fa.fa-search
+  // sidebar menu: : style can be found in sidebar.less
+  ul.sidebar-menu
+    li.header 导航列表  
+    each item in navs
+      if item.child
+        li.treeview
+          a(href='#')
+            i.fa.fa-th
+            span #{item.title}
+            small.label.pull-right.bg-green new
+          ul.treeview-menu
+            each val in  item.child
+              li
+                a(href='#{val.url}')
+                  i.fa.fa-circle-o
+                  |  #{val.title}
+      else
+        li
+          a(href='#{item.url}')
+            i.fa.fa-th
+            span #{item.title}
+            small.label.pull-right.bg-green new  
+    
+    li.header 快捷操作
+    li
+      a(href='#')
+        i.fa.fa-circle-o.text-red
+        span 用户列表      
+    li
+      a(href='#')
+        i.fa.fa-circle-o.text-yellow
+        span 场馆列表       
+    li
+      a(href='#')
+        i.fa.fa-circle-o.text-aqua
+        span 订单列表

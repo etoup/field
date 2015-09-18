@@ -9,6 +9,11 @@ var NavSchema = new Schema({
     type:Boolean,
     default:false
   },
+  icon:String,
+  style:{
+    type:Number,
+    default:0
+  },
   child:[],
   meta: {
     createAt: {
