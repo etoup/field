@@ -27,15 +27,6 @@ exports.dologin = function(req, res) {
   var email = req.body.email
   var password = req.body.password
   var rememberme = req.body.rememberme
- 
-  req.check('email', '请填写邮箱地址').notEmpty()
-  req.check('email', '请正确填写邮箱地址').isEmail()
-  req.check('password', '密码长度6-20字符').len(6, 20)
-  var errors = req.validationErrors()
-  if (errors) {
-    req.flash('errors', errors)
-    return res.redirect('login')
-  }
 
   User.findOne({email:email},function(err,user){
     if (err) {
@@ -52,7 +43,12 @@ exports.dologin = function(req, res) {
           if(rememberme){
             res.cookie('username', email , { expires: new Date(Date.now() + 900000), httpOnly: true })
           }
-          return res.redirect('/admin')
+          User.doLogin(user.id,function(err,user){
+            if (err) {
+              console.log(err)
+            }
+            return res.redirect('/admin')
+          })
         }else{
           req.flash('errors', [{msg:'密码错误'}])
           return res.redirect('login')
@@ -167,8 +163,20 @@ exports.doNav = function(req, res, next) {
         title: '场馆管理',
         url: '/admin/fields',
         types:40,
-        style:3,
-        icon:'fa-th'
+        style:1,
+        icon:'fa-th',
+        child:[
+          {
+            title: '运动项目分类',
+            url: '/admin/fields/items',
+            target:false
+          },
+          {
+            title: '场馆列表',
+            url: '/admin/fields/index',
+            target:false
+          }
+        ]
     },
     {
         title: '订单管理',
@@ -208,3 +216,4 @@ exports.doNav = function(req, res, next) {
 
   next()
 }
+

@@ -1,5 +1,5 @@
-var index = require('../../app/controllers/index')
-var midware = require('../../app/controllers/midware')
+var index = require('../../app/controllers/admin/index')
+var midware = require('../../app/controllers/admin/midware')
 
 module.exports = function(app) {
   //预处理

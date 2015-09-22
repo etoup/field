@@ -1,4 +1,4 @@
-var uc = require('../../app/controllers/uc')
+var uc = require('../../app/controllers/admin/uc')
 
 module.exports = function(app) {
   // 后台登录

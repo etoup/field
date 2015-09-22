@@ -3,13 +3,31 @@ extends ../layout
 block content
   .row
     .col-xs-12
-      .callout.callout-info
-        h4 全局设置           
-        p 系统全局设置，可以编辑修改，但最好不要删除  
-          a(href='#',data-toggle="modal",data-target="#myModal") 新增设置
+      .box.box-default
+        .box-header.with-border
+          h3.box-title 搜索   
+          .box-tools.pull-right
+            button.btn.btn-box-tool(data-widget='collapse')
+              i.fa.fa-minus               
+            button.btn.btn-box-tool(data-widget='remove')
+              i.fa.fa-remove
+        form
+          .box-body
+            .row
+              .col-md-3
+                .form-group
+                  label 邮箱                
+                  input.form-control(type='email', placeholder='邮箱地址')   
+              .col-md-3       
+                .form-group
+                  label 手机号码                  
+                  input.form-control(type='tel', placeholder='手机号码')   
+          // /.box-body
+          .box-footer  
+            button.btn.btn-info.pull-right(type='submit') 搜索
       .box
         .box-header
-          h3.box-title 全局设置             
+          h3.box-title 用户列表         
           .box-tools
             .input-group(style='width: 150px;')
               input.form-control.input-sm.pull-right(type='text', name='table_search', placeholder='搜索')          
@@ -20,18 +38,20 @@ block content
         .box-body.table-responsive.no-padding
           table.table.table-hover
             tr                 
-              th 标题                  
-              th 设置值                   
+              th 邮箱                  
+              th 手机号码                   
               th 状态           
-              th 说明
+              th 注册时间
+              th 最后登录时间
               th 操作         
-            each item in sets  
+            each item in users  
               tr            
-                td #{item.title}                 
-                td #{item.vals}              
+                td #{item.email}                 
+                td #{item.mobile}              
                 td
-                  span.label.label-success 激活  
-                td #{item.remark}     
+                  span.label.label-success 激活   
+                td #{moment(item.meta.createAt).format('YYYY-MM-DD HH:mm')}   
+                td #{moment(item.lastLoginAt).format('YYYY-MM-DD HH:mm')}    
                 td     
                   a(href="/admin/setting/edit/#{item._id}",data-toggle="modal",data-target="#modal_#{item._id}")
                     button.btn.btn-block.btn-success.btn-xs(type='button') 编辑

@@ -85,6 +85,11 @@ UserSchema.statics = {
     return this
       .findOne({_id: id})
       .exec(cb);
+  },
+  doLogin:function(id,cb){
+    return this
+      .update({_id:id},{lastLoginAt:Date.now()})
+      .exec(cb)
   }
 }
 

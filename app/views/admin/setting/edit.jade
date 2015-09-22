@@ -1,0 +1,24 @@
+form(id='form',action='/admin/setting/doedit', method='post',role='form')
+  .modal-header
+    button.close(type='button', data-dismiss='modal', aria-label='Close')
+      span(aria-hidden='true') &times;               
+    h4.modal-title 编辑全局设置                 
+  .modal-body
+    .box-body
+      .form-group
+        label(for='tag') 设置标识                
+        input#tag.form-control(type='text', name="set[tag]",value="#{set.tag}",placeholder='设置标识')    
+      .form-group
+        label(for='title') 设置标题                
+        input#title.form-control(type='text', name="set[title]",value="#{set.title}",placeholder='设置标题')                  
+      .form-group
+        label(for='vals') 设置值                    
+        input#vals.form-control(type='text', name="set[vals]",value="#{set.vals}",placeholder='设置值')       
+      .form-group
+        label(for='remark') 相关说明                    
+        input#remark.form-control(type='text', name="set[remark]",value="#{set.remark}",placeholder='设置相关说明')            
+        input(type="hidden",name="set[_id]",value="#{set._id}")  
+  .modal-footer
+    button.btn.btn-default.pull-left(type='button', data-dismiss='modal') 关闭        
+    button.btn.btn-primary(type='submit') 提交
+      
