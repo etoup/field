@@ -1,0 +1,12 @@
+dl.text-center{
+  cursor: pointer;
+}
+dl.text-center i{
+  font-size: 30px;
+}
+dl.hover dd{
+  color: #ff9900;
+}
+dl.hover dt{
+  color: #f39c12;
+}

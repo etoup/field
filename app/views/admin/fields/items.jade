@@ -1,58 +1,68 @@
 extends ../layout
 
 block content
+  link(rel='stylesheet', href='/stylesheets/icon/iconfont.css')
   .row
     .col-xs-12
-      
-      .box
-        .box-header
-          h3.box-title 项目列表           
-          .box-tools
-           a(href='#',data-toggle="modal",data-target="#myModal")
-            button.btn.btn-block.btn-warning.btn-sm 添加
-        // /.box-header
-        .box-body.table-responsive.no-padding
-          table.table.table-hover
-            tr                 
-              th 图标                
-              th 运动项目                
-              th 状态           
-              th 说明
-              th 操作    
-            if  sets    
-              each item in sets  
-                tr            
-                  td #{item.title}                 
-                  td #{item.vals}              
+      .callout.callout-success
+        h4 新增运动项目           
+        p 根据运营情况，自行添加运动项目 
+          a(href='#',data-toggle="modal",data-target="#myModal") 添加项目
+      .callout.callout-warning
+        h4 开启和关闭运动项目           
+        p 根据运营情况，自行选择需要开启和关闭的运动项目  
+          a(href="/admin/fields/oc",data-toggle="modal",data-target="#modal") 开启项目
+      if  items   
+        .box
+          .box-header
+            h3.box-title 项目列表           
+            
+          // /.box-header
+          .box-body.table-responsive.no-padding
+            table.table.table-hover
+              tr                 
+                th 图标                
+                th 运动项目                
+                th 状态           
+                th 说明
+                th 操作    
+              each item in items  
+                tr        
                   td
-                    span.label.label-success 激活  
+                    i.icon.iconfont !{item.icon}                 
+                  td #{item.title}              
+                  td
+                    span.label.label-danger 未激活  
                   td #{item.remark}     
                   td     
                     a(href="/admin/setting/edit/#{item._id}",data-toggle="modal",data-target="#modal_#{item._id}")
-                      button.btn.btn-block.btn-success.btn-xs(type='button') 编辑
+                      button.btn.btn-success(type='button') 编辑
+                    button.btn.btn-warning(type='button') 激活
                 .modal.modal.fade(id="modal_#{item._id}",tabindex="-1",role="dialog")
                   .modal-dialog
                     .modal-content
-              
+        .modal.modal.fade(id="modal",tabindex="-1",role="dialog")
+          .modal-dialog
+            .modal-content
         .modal.modal.fade(id="myModal",tabindex="-1",role="dialog")
           .modal-dialog
             .modal-content
-              form(id='form',action='/admin/setting/dopicture', method='post',role='form')
+              form(id='form',action='/admin/fields/dosave', method='post',role='form')
                 .modal-header
                   button.close(type='button', data-dismiss='modal', aria-label='Close')
                     span(aria-hidden='true') &times;               
-                  h4.modal-title 添加运动项目                 
+                  h4.modal-title 新增运动项目                 
                 .modal-body
                   .box-body
                     .form-group
-                      label(for='icon') 运动项目图标                
-                      input#icon.form-control(type='text', name="program[icon]",placeholder='设置运动项目图标')   
-                    .form-group
                       label(for='title') 设置标题                
-                      input#title.form-control(type='text', name="program[title]",placeholder='设置标题')                     
+                      input#title.form-control(type='text', name="program[title]",placeholder='设置标题')   
+                    .form-group
+                      label(for='icon') 设置图标                
+                      input#icon.form-control(type='text', name="program[icon]",placeholder='设置图标')                       
                     .form-group
                       label(for='remark') 相关说明                    
-                      input#remark.form-control(type='text', name="set[remark]",placeholder='设置相关说明')              
+                      input#remark.form-control(type='text', name="program[remark]",placeholder='设置相关说明')      
                 .modal-footer
                   button.btn.btn-default.pull-left(type='button', data-dismiss='modal') 关闭        
                   button.btn.btn-primary(type='submit') 提交
