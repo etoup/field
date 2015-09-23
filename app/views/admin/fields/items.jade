@@ -4,22 +4,23 @@ block content
   link(rel='stylesheet', href='/stylesheets/icon/iconfont.css')
   .row
     .col-xs-12
-      .callout.callout-success
+      .callout.callout-info
         h4 新增运动项目           
         p 根据运营情况，自行添加运动项目 
           a(href='#',data-toggle="modal",data-target="#myModal") 添加项目
-      .callout.callout-warning
-        h4 开启和关闭运动项目           
-        p 根据运营情况，自行选择需要开启和关闭的运动项目  
-          a(href="/admin/fields/oc",data-toggle="modal",data-target="#modal") 开启项目
       if  items   
         .box
           .box-header
-            h3.box-title 项目列表           
-            
+            h3.box-title 项目列表       
+            .box-tools
+              .input-group(style='width: 150px;')
+                input.form-control.input-sm.pull-right(type='text', name='table_search', placeholder='搜索')          
+                .input-group-btn
+                  button.btn.btn-sm.btn-default
+                    i.fa.fa-search                
           // /.box-header
-          .box-body.table-responsive.no-padding
-            table.table.table-hover
+          .box-body
+            table.table.table-hover.table-bordered
               tr                 
                 th 图标                
                 th 运动项目                
@@ -32,20 +33,26 @@ block content
                     i.icon.iconfont !{item.icon}                 
                   td #{item.title}              
                   td
-                    span.label.label-danger 未激活  
+                    case item.status
+                      when 0
+                        span.label.label-danger 未激活  
+                      when 1
+                        span.label.label-success 已激活  
                   td #{item.remark}     
                   td     
-                    a(href="/admin/setting/edit/#{item._id}",data-toggle="modal",data-target="#modal_#{item._id}")
+                    a(href="edit/#{item._id}",data-toggle="modal",data-target="#modal_#{item._id}")
                       button.btn.btn-success(type='button') 编辑
-                    button.btn.btn-warning(type='button') 激活
+                    case item.status
+                      when 0
+                        button.btn.btn-warning.confirm(type='button',data="#{item._id}",status="1",swal-title="确定激活?",swal-text="您真的决定激活该项运动，请点击确定!") 立即激活
+                      when 1
+                        button.btn.btn-danger.confirm(type='button',data="#{item._id}",status="0",swal-title="确定取消激活?",swal-text="您真的决定取消激活该项运动，请点击确定!") 取消激活
                 .modal.modal.fade(id="modal_#{item._id}",tabindex="-1",role="dialog")
-                  .modal-dialog
+                  .modal-dialog.modal-sm
                     .modal-content
-        .modal.modal.fade(id="modal",tabindex="-1",role="dialog")
-          .modal-dialog
-            .modal-content
+          
         .modal.modal.fade(id="myModal",tabindex="-1",role="dialog")
-          .modal-dialog
+          .modal-dialog.modal-sm
             .modal-content
               form(id='form',action='/admin/fields/dosave', method='post',role='form')
                 .modal-header

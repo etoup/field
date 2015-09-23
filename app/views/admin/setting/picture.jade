@@ -17,8 +17,8 @@ block content
                 button.btn.btn-sm.btn-default
                   i.fa.fa-search
         // /.box-header
-        .box-body.table-responsive.no-padding
-          table.table.table-hover
+        .box-body
+          table.table.table-hover.table-bordered
             tr                 
               th 标题                  
               th 设置值                   
@@ -34,13 +34,13 @@ block content
                 td #{item.remark}     
                 td     
                   a(href="/admin/setting/edit/#{item._id}",data-toggle="modal",data-target="#modal_#{item._id}")
-                    button.btn.btn-block.btn-success.btn-xs(type='button') 编辑
+                    button.btn.btn-success(type='button') 编辑
               .modal.modal.fade(id="modal_#{item._id}",tabindex="-1",role="dialog")
-                .modal-dialog
+                .modal-dialog.modal-sm
                   .modal-content
-              
+
         .modal.modal.fade(id="myModal",tabindex="-1",role="dialog")
-          .modal-dialog
+          .modal-dialog.modal-sm
             .modal-content
               form(id='form',action='/admin/setting/dopicture', method='post',role='form')
                 .modal-header

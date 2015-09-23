@@ -1,0 +1,28 @@
+form(id='form',action='doedit', method='post',role='form')
+  link(rel='stylesheet', href='/stylesheets/icon/iconfont.css')
+  link(rel='stylesheet', href='/stylesheets/css.css')
+  .modal-header
+    button.close(type='button', data-dismiss='modal', aria-label='Close')
+      span(aria-hidden='true') &times;               
+    h4.modal-title 编辑运动项目                 
+  .modal-body
+    .box-body
+      .form-group            
+        dl.text-center
+          dd 
+            i.icon.iconfont !{program.icon}
+          dt #{program.title} 
+      .form-group
+        label(for='title') 设置标题                
+        input#title.form-control(type='text', name="program[title]",value="#{program.title}",placeholder='设置标题')   
+      .form-group
+        label(for='sort') 排序                
+        input#sort.form-control(type='text', name="program[sort]",value="#{program.sort}",placeholder='数字越小越靠前')   
+      .form-group
+        label(for='remark') 相关说明                    
+        input#remark.form-control(type='text', name="program[remark]",value="#{program.remark}",placeholder='设置相关说明')   
+        input(type="hidden",name="program[_id]",value="#{program._id}")     
+  .modal-footer
+    button.btn.btn-default.pull-left(type='button', data-dismiss='modal') 关闭        
+    button.btn.btn-primary(type='submit') 提交
+      

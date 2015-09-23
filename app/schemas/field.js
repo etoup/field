@@ -1,17 +1,21 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
+var ObjectId = Schema.Types.ObjectId
 
-var ProgramSchema = new Schema({
-  title: String,
-  icon:String,
+var FieldSchema = new Schema({
+  name: {
+    unique: true,
+    type: String
+  },
+  tel: {
+    unique: true,
+    type: String
+  },
   status:{
     type:Number,
     default:0
   },
-  sort:{
-    type:Number,
-    default:0
-  },
+  from: {type: ObjectId, ref: 'User'},
   remark:{
     type:String,
     default:'没有说明内容'
@@ -28,7 +32,7 @@ var ProgramSchema = new Schema({
   }
 })
 
-ProgramSchema.pre('save', function(next) {
+FieldSchema.pre('save', function(next) {
   if (this.isNew) {
     this.meta.createAt = this.meta.updateAt = Date.now()
   }
@@ -39,7 +43,7 @@ ProgramSchema.pre('save', function(next) {
   next()
 })
 
-ProgramSchema.statics = {
+FieldSchema.statics = {
   fetch: function(cb) {
     return this
       .find({})
@@ -53,4 +57,4 @@ ProgramSchema.statics = {
   }
 }
 
-module.exports = ProgramSchema
+module.exports = FieldSchema
