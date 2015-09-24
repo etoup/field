@@ -62,7 +62,7 @@ exports.doedit = function(req, res) {
       if (err) {
         console.log(err)
       }
-
+      console.log(setObj)
       _set = _.extend(set, setObj)
       _set.save(function(err, set) {
         if (err) {
@@ -70,6 +70,26 @@ exports.doedit = function(req, res) {
         }
         req.flash('errors', [{msg:'操作成功'}])
         return  res.redirect('picture' )
+      })
+    })
+  }
+}
+exports.oc = function(req, res) {
+  var id = req.body._id
+  var status = req.body._status
+  var _obj
+  if(id){
+    Set.findById(id, function(err, program) {
+      if (err) {
+        console.log(err)
+      }
+      _obj = _.extend(program,{status:status})
+      console.log(_obj)
+      _obj.save(function(err, program) {
+        if (err) {
+          console.log(err)
+        }
+        return  res.json({ msg: 'true' ,backurl:'picture'})
       })
     })
   }

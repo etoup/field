@@ -89,7 +89,7 @@ exports.oc = function(req, res) {
         if (err) {
           console.log(err)
         }
-        return  res.json({ msg: 'true' })
+        return  res.json({ msg: 'true' ,backurl:'items'})
       })
     })
   }

@@ -79,6 +79,7 @@ exports.doreg= function(req, res) {
   var _user = req.body.user
   req.check('user.email', '请填写邮箱地址').notEmpty()
   req.check('user.email', '请正确填写邮箱地址').isEmail()
+  req.check('user.mobile', '请填写手机号码').notEmpty()
   req.check('user.password', '密码长度6-20字符').len(6, 20)
   req.check('user.repassword', '重复密码长度6-20字符').len(6, 20)
   var errors = req.validationErrors()

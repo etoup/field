@@ -31,14 +31,24 @@ block content
                 td #{item.email}                 
                 td #{item.mobile}              
                 td
-                  span.label.label-success 激活   
+                  case item.status
+                    when 0
+                      span.label.label-danger 禁用 
+                    when 1
+                      span.label.label-success 启用  
                 td #{moment(item.meta.createAt).format('YYYY-MM-DD HH:mm')}   
                 td #{moment(item.lastLoginAt).format('YYYY-MM-DD HH:mm')}    
                 td     
-                  a(href="/admin/setting/edit/#{item._id}",data-toggle="modal",data-target="#modal_#{item._id}")
+                  a(href="/admin/users/edit/#{item._id}",data-toggle="modal",data-target="#modal_#{item._id}")
                     button.btn.btn-success(type='button') 编辑
+                  if item.role < 100
+                    case item.status
+                      when 0
+                        button.btn.btn-warning.confirm(type='button',data="#{item._id}",status="1",url="/admin/users/oc",swal-title="确定启用?",swal-text="您真的决定启用该用户，请点击确定!") 启用
+                      when 1
+                        button.btn.btn-danger.confirm(type='button',data="#{item._id}",status="0",url="/admin/users/oc",swal-title="确定禁用?",swal-text="您真的决定禁用该用户，请点击确定!") 禁用
               .modal.modal.fade(id="modal_#{item._id}",tabindex="-1",role="dialog")
-                .modal-dialog
+                .modal-dialog.modal-sm
                   .modal-content
         .box-footer.clearfix
           ul.pagination.pagination-sm.no-margin.pull-right
@@ -54,27 +64,24 @@ block content
               a(href='#') &raquo;
               
         .modal.modal.fade(id="myModal",tabindex="-1",role="dialog")
-          .modal-dialog
+          .modal-dialog.modal-sm
             .modal-content
-              form(id='form',action='/admin/setting/dopicture', method='post',role='form')
+              form(id='form',action='/admin/users/doadd', method='post',role='form')
                 .modal-header
                   button.close(type='button', data-dismiss='modal', aria-label='Close')
                     span(aria-hidden='true') &times;               
-                  h4.modal-title 新增全局设置                 
+                  h4.modal-title 新增普通用户              
                 .modal-body
                   .box-body
                     .form-group
-                      label(for='tag') 设置标识                
-                      input#tag.form-control(type='text', name="set[tag]",placeholder='设置标识')   
+                      label(for='email') 邮箱地址                
+                      input#email.form-control(type='text', name="user[email]",placeholder='邮箱地址')                  
                     .form-group
-                      label(for='title') 设置标题                
-                      input#title.form-control(type='text', name="set[title]",placeholder='设置标题')                  
+                      label(for='mobile') 手机号码                    
+                      input#mobile.form-control(type='text', name="user[mobile]",placeholder='手机号码')       
                     .form-group
-                      label(for='vals') 设置值                    
-                      input#vals.form-control(type='text', name="set[vals]",placeholder='设置值')       
-                    .form-group
-                      label(for='remark') 相关说明                    
-                      input#remark.form-control(type='text', name="set[remark]",placeholder='设置相关说明')              
+                      label(for='password') 登录密码                    
+                      input#password.form-control(type='text', name="user[password]",placeholder='登录密码')              
                 .modal-footer
                   button.btn.btn-default.pull-left(type='button', data-dismiss='modal') 关闭        
                   button.btn.btn-primary(type='submit') 提交

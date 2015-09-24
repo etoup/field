@@ -1,0 +1,21 @@
+form(id='form',action='/admin/users/doedit', method='post',role='form')
+  .modal-header
+    button.close(type='button', data-dismiss='modal', aria-label='Close')
+      span(aria-hidden='true') &times;               
+    h4.modal-title 编辑用户信息                
+  .modal-body
+    .box-body
+      .form-group
+        label(for='email') 新邮箱地址                
+        input#email.form-control(type='text', name="user[email]",value="#{user.email}",placeholder='新邮箱地址')    
+      .form-group
+        label(for='mobile') 新手机号码                
+        input#mobile.form-control(type='text', name="user[mobile]",value="#{user.mobile}",placeholder='新手机号码')                  
+      .form-group
+        label(for='password') 新密码                    
+        input#password.form-control(type='text', name="user[password]",placeholder='新密码')       
+             
+        input(type="hidden",name="user[_id]",value="#{user._id}")  
+  .modal-footer
+    button.btn.btn-default.pull-left(type='button', data-dismiss='modal') 关闭        
+    button.btn.btn-primary(type='submit') 提交

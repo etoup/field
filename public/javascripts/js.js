@@ -9,6 +9,7 @@ $('dl.text-center').on('click',function(){
 $('button.confirm').on('click',function(){
     var _id = $(this).attr('data'),
       _status=$(this).attr('status'),
+      url=$(this).attr('url'),
       title=$(this).attr('swal-title'),
       text=$(this).attr('swal-text');
     swal({
@@ -25,7 +26,7 @@ $('button.confirm').on('click',function(){
       
       $.ajax({
         type:'post',  
-        url: "oc",
+        url: url,
         data: {_id:_id,_status:_status},
         dataType: "json",
         success: function(data){
@@ -35,7 +36,7 @@ $('button.confirm').on('click',function(){
               type: "success"
             },
             function(){
-              window.location.href = 'items';
+              window.location.href = data.backurl;
             });
           }
         }

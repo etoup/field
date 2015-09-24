@@ -30,11 +30,20 @@ block content
                 td #{item.title}                 
                 td #{item.vals}              
                 td
-                  span.label.label-success 激活  
+                  case item.status
+                    when 0
+                      span.label.label-danger 关闭 
+                    when 1
+                      span.label.label-success 开启  
                 td #{item.remark}     
                 td     
                   a(href="/admin/setting/edit/#{item._id}",data-toggle="modal",data-target="#modal_#{item._id}")
                     button.btn.btn-success(type='button') 编辑
+                  case item.status
+                    when 0
+                      button.btn.btn-warning.confirm(type='button',data="#{item._id}",status="1",url="oc",swal-title="确定开启?",swal-text="您真的决定开启该项设置，请点击确定!") 开启
+                    when 1
+                      button.btn.btn-danger.confirm(type='button',data="#{item._id}",status="0",url="oc",swal-title="确定关闭?",swal-text="您真的决定关闭该项设置，请点击确定!") 关闭
               .modal.modal.fade(id="modal_#{item._id}",tabindex="-1",role="dialog")
                 .modal-dialog.modal-sm
                   .modal-content

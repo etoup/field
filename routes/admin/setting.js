@@ -8,4 +8,5 @@ module.exports = function(app) {
   app.post('/admin/setting/dopicture', midware.signinRequired,setting.dopicture);
   app.get('/admin/setting/edit/:id', midware.signinRequired,setting.edit);
   app.post('/admin/setting/doedit', midware.signinRequired,setting.doedit);
+  app.post('/admin/setting/oc', midware.signinRequired,setting.oc);
 }

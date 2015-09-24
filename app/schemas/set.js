@@ -3,7 +3,7 @@ var Schema = mongoose.Schema
 
 var SetSchema = new Schema({
   title: String,
-  vals: Number,
+  vals: String,
   types:Number,//1-全局设置
   tag: {
     unique: true,
@@ -44,7 +44,7 @@ SetSchema.statics = {
   fetch: function(cb) {
     return this
       .find({})
-      .sort('meta.updateAt')
+      .sort('meta.createAt')
       .exec(cb);
   },
   findById: function(id, cb) {

@@ -44,9 +44,9 @@ block content
                       button.btn.btn-success(type='button') 编辑
                     case item.status
                       when 0
-                        button.btn.btn-warning.confirm(type='button',data="#{item._id}",status="1",swal-title="确定激活?",swal-text="您真的决定激活该项运动，请点击确定!") 立即激活
+                        button.btn.btn-warning.confirm(type='button',data="#{item._id}",status="1",url="oc",swal-title="确定激活?",swal-text="您真的决定激活该项运动，请点击确定!") 立即激活
                       when 1
-                        button.btn.btn-danger.confirm(type='button',data="#{item._id}",status="0",swal-title="确定取消激活?",swal-text="您真的决定取消激活该项运动，请点击确定!") 取消激活
+                        button.btn.btn-danger.confirm(type='button',data="#{item._id}",status="0",url="oc",swal-title="确定取消激活?",swal-text="您真的决定取消激活该项运动，请点击确定!") 取消激活
                 .modal.modal.fade(id="modal_#{item._id}",tabindex="-1",role="dialog")
                   .modal-dialog.modal-sm
                     .modal-content

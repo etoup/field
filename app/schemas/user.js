@@ -3,24 +3,19 @@ var bcrypt = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
 
 var UserSchema = new mongoose.Schema({
-  name: {
-    unique: true,
-    type: String
-  },
-  email: {
-    unique: true,
-    type: String
-  },
-  mobile: {
-    unique: true,
-    type: String
-  },
+  name: String,
+  email: String,
+  mobile: String,
   password: String,
   ip: String,
   lastLoginAt:  {
       type: Date,
       default: Date.now()
     },
+  status:{
+    type:Number,
+    default:1
+  },
   // 0: nomal user
   // 1: verified user
   // 2: professonal user
@@ -78,7 +73,7 @@ UserSchema.statics = {
   fetch: function(cb) {
     return this
       .find({})
-      .sort('meta.updateAt')
+      .sort('meta.createAt')
       .exec(cb);
   },
   findById: function(id, cb) {
