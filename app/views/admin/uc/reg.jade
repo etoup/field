@@ -28,10 +28,7 @@ html
           a(href='/admin') LOGO
         .register-box-body
           p.login-box-msg 注册初始管理账号   
-          form(id='form',action='/admin/uc/reg', method='post')  
-            .form-group.has-feedback
-              input.form-control(type='email',name='user[email]',check-type='mail required',mail-message='请填写邮箱地址',placeholder='邮箱')  
-              span.glyphicon.glyphicon-envelope.form-control-feedback        
+          form(id='form',action='/admin/uc/reg', method='post')    
             .form-group.has-feedback
               input.form-control(type='mobile',name='user[mobile]',check-type='mobile required',mobile-message='请填写手机号码',placeholder='手机号码')  
               span.glyphicon.glyphicon-phone.form-control-feedback        

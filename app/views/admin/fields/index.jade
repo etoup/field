@@ -3,78 +3,81 @@ extends ../layout
 block content
   .row
     .col-xs-12
-      .callout.callout-info
-        h4 #{title}          
-        p 场馆操作相关管理 
-          a(href='#',data-toggle="modal",data-target="#myModal") 新增场馆
-      .box
-        .box-header
-          h3.box-title 用户列表         
-          .box-tools
-            .input-group(style='width: 150px;')
-              input.form-control.input-sm.pull-right(type='text', name='table_search', placeholder='搜索')          
-              .input-group-btn
-                button.btn.btn-sm.btn-default
-                  i.fa.fa-search
-        // /.box-header
-        .box-body
-          table.table.table-hover.table-bordered
-            tr                 
-              th 邮箱                  
-              th 手机号码                   
-              th 状态           
-              th 注册时间
-              th 最后登录时间
-              th 操作         
-            each item in users  
-              tr            
-                td #{item.email}                 
-                td #{item.mobile}              
-                td
-                  span.label.label-success 激活   
-                td #{moment(item.meta.createAt).format('YYYY-MM-DD HH:mm')}   
-                td #{moment(item.lastLoginAt).format('YYYY-MM-DD HH:mm')}    
-                td     
-                  a(href="/admin/setting/edit/#{item._id}",data-toggle="modal",data-target="#modal_#{item._id}")
-                    button.btn.btn-success(type='button') 编辑
-              .modal.modal.fade(id="modal_#{item._id}",tabindex="-1",role="dialog")
-                .modal-dialog
-                  .modal-content
-        .box-footer.clearfix
-          ul.pagination.pagination-sm.no-margin.pull-right
-            li
-              a(href='#') &laquo;             
-            li.active
-              a(href='#') 1           
-            li
-              a(href='#') 2                  
-            li
-              a(href='#') 3            
-            li
-              a(href='#') &raquo;
+      if fields.length != 0
+        .callout.callout-info
+          h4 #{title}          
+          p 场馆操作相关管理 
+            a(href='#',data-toggle="modal",data-target="#myModal") 新增场馆
+        .box
+          .box-header
+            h3.box-title 场馆列表         
+            .box-tools
+              .input-group(style='width: 150px;')
+                input.form-control.input-sm.pull-right(type='text', name='table_search', placeholder='搜索')          
+                .input-group-btn
+                  button.btn.btn-sm.btn-default
+                    i.fa.fa-search
+          // /.box-header
+          .box-body
+            table.table.table-hover.table-bordered
+              tr                 
+                th 场馆名称                 
+                th 手机号码                   
+                th 状态           
+                th 注册时间
+                th 最后登录时间
+                th 操作         
+              each item in fields 
+                tr            
+                  td #{item.name}                 
+                  td #{item.mobile}              
+                  td
+                    span.label.label-success 激活   
+                  td #{moment(item.meta.createAt).format('YYYY-MM-DD HH:mm')}   
+                  td #{moment(item.lastLoginAt).format('YYYY-MM-DD HH:mm')}    
+                  td     
+                    a(href="/admin/setting/edit/#{item._id}",data-toggle="modal",data-target="#modal_#{item._id}")
+                      button.btn.btn-success(type='button') 编辑
+                .modal.modal.fade(id="modal_#{item._id}",tabindex="-1",role="dialog")
+                  .modal-dialog
+                    .modal-content
+          .box-footer.clearfix
+            ul.pagination.pagination-sm.no-margin.pull-right
+              li
+                a(href='#') &laquo;             
+              li.active
+                a(href='#') 1           
+              li
+                a(href='#') 2                  
+              li
+                a(href='#') 3            
+              li
+                a(href='#') &raquo;
+      else
+        .callout.callout-warning
+          h4 #{title}          
+          p 没有场馆信息 
+            a(href='#',data-toggle="modal",data-target="#myModal") 新增场馆
               
-        .modal.modal.fade(id="myModal",tabindex="-1",role="dialog")
-          .modal-dialog
-            .modal-content
-              form(id='form',action='/admin/setting/dopicture', method='post',role='form')
-                .modal-header
-                  button.close(type='button', data-dismiss='modal', aria-label='Close')
-                    span(aria-hidden='true') &times;               
-                  h4.modal-title 新增全局设置                 
-                .modal-body
-                  .box-body
-                    .form-group
-                      label(for='tag') 设置标识                
-                      input#tag.form-control(type='text', name="set[tag]",placeholder='设置标识')   
-                    .form-group
-                      label(for='title') 设置标题                
-                      input#title.form-control(type='text', name="set[title]",placeholder='设置标题')                  
-                    .form-group
-                      label(for='vals') 设置值                    
-                      input#vals.form-control(type='text', name="set[vals]",placeholder='设置值')       
-                    .form-group
-                      label(for='remark') 相关说明                    
-                      input#remark.form-control(type='text', name="set[remark]",placeholder='设置相关说明')              
-                .modal-footer
-                  button.btn.btn-default.pull-left(type='button', data-dismiss='modal') 关闭        
-                  button.btn.btn-primary(type='submit') 提交
+      .modal.modal.fade(id="myModal",tabindex="-1",role="dialog")
+        .modal-dialog.modal-sm
+          .modal-content
+            form(id='form',action='/admin/fields/doadd', method='post',role='form')
+              .modal-header
+                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                  span(aria-hidden='true') &times;               
+                h4.modal-title 新增场馆             
+              .modal-body
+                .box-body
+                  .form-group
+                    label(for='name') 场馆名称                
+                    input#name.form-control(type='text', name="field[name]",placeholder='场馆名称')                  
+                  .form-group
+                    label(for='mobile') 手机号码                    
+                    input#mobile.form-control(type='text', name="field[mobile]",placeholder='手机号码')       
+                  .form-group
+                    label(for='password') 登录密码                    
+                    input#password.form-control(type='text', name="field[password]",placeholder='登录密码')              
+              .modal-footer
+                button.btn.btn-default.pull-left(type='button', data-dismiss='modal') 关闭        
+                button.btn.btn-primary(type='submit') 提交

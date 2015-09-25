@@ -1,12 +1,19 @@
-var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
-var SALT_WORK_FACTOR = 10;
+var mongoose = require('mongoose')
+var Schema = mongoose.Schema
+var bcrypt = require('bcrypt')
+var SALT_WORK_FACTOR = 10
 
-var UserSchema = new mongoose.Schema({
+var UserSchema = new Schema({
   name: String,
   email: String,
-  mobile: String,
-  password: String,
+  mobile: {
+    unique: true,
+    type: String
+  },
+  password: {
+    unique: true,
+    type: String
+  },
   ip: String,
   lastLoginAt:  {
       type: Date,
@@ -19,7 +26,6 @@ var UserSchema = new mongoose.Schema({
   // 0: nomal user
   // 1: verified user
   // 2: professonal user
-  // 50: field admin
   // 100: super admin
   role: {
     type: Number,
@@ -35,7 +41,7 @@ var UserSchema = new mongoose.Schema({
       default: Date.now()
     }
   }
-});
+})
 
 UserSchema.pre('save', function(next) {
   var user = this;
@@ -81,6 +87,19 @@ UserSchema.statics = {
       .findOne({_id: id})
       .exec(cb);
   },
+  findByRole: function(role, cb) {
+    return this
+      .find({role: role})
+      .sort('meta.createAt')
+      .exec(cb);
+  },
+  findByFields: function(cb) {
+    return this
+      .find({role: 50})
+      .populate('field','name') 
+      .sort('meta.createAt')
+      .exec(cb);
+  },
   doLogin:function(id,cb){
     return this
       .update({_id:id},{lastLoginAt:Date.now()})
@@ -88,4 +107,4 @@ UserSchema.statics = {
   }
 }
 
-module.exports = UserSchema;
+module.exports = UserSchema

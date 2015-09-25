@@ -19,23 +19,32 @@ block content
         // /.box-header
         .box-body
           table.table.table-hover.table-bordered
-            tr                 
-              th 邮箱                  
-              th 手机号码                   
-              th 状态           
+            tr         
+              th 手机号码                  
+              th 邮箱                    
+              th 状态    
+              th 权限              
               th 注册时间
               th 最后登录时间
               th 操作         
             each item in users  
-              tr            
-                td #{item.email}                 
-                td #{item.mobile}              
+              tr    
+                td #{item.mobile}          
+                td #{item.email}                        
                 td
                   case item.status
                     when 0
                       span.label.label-danger 禁用 
                     when 1
-                      span.label.label-success 启用  
+                      span.label.label-success 启用 
+                td
+                  case item.role
+                    when 0
+                      span.label.label-danger 未验证用户 
+                    when 1
+                      span.label.label-success 普通用户 
+                    when 100
+                      span.label.label-info 高级后台管理员
                 td #{moment(item.meta.createAt).format('YYYY-MM-DD HH:mm')}   
                 td #{moment(item.lastLoginAt).format('YYYY-MM-DD HH:mm')}    
                 td     

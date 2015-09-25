@@ -24,11 +24,11 @@ exports.login = function(req, res) {
 
 // login
 exports.dologin = function(req, res) {
-  var email = req.body.email
+  var mobile = req.body.mobile
   var password = req.body.password
   var rememberme = req.body.rememberme
 
-  User.findOne({email:email},function(err,user){
+  User.findOne({mobile:mobile},function(err,user){
     if (err) {
       console.log(err)
     }
@@ -41,7 +41,7 @@ exports.dologin = function(req, res) {
           req.session.user = user
           req.flash('errors', [{msg:'登录成功'}])
           if(rememberme){
-            res.cookie('username', email , { expires: new Date(Date.now() + 900000), httpOnly: true })
+            res.cookie('username', mobile , { expires: new Date(Date.now() + 900000), httpOnly: true })
           }
           User.doLogin(user.id,function(err,user){
             if (err) {
@@ -77,8 +77,6 @@ exports.reg = function(req, res) {
 // reg
 exports.doreg= function(req, res) {
   var _user = req.body.user
-  req.check('user.email', '请填写邮箱地址').notEmpty()
-  req.check('user.email', '请正确填写邮箱地址').isEmail()
   req.check('user.mobile', '请填写手机号码').notEmpty()
   req.check('user.password', '密码长度6-20字符').len(6, 20)
   req.check('user.repassword', '重复密码长度6-20字符').len(6, 20)
@@ -99,7 +97,7 @@ exports.doreg= function(req, res) {
     if (err) {
       console.log(err)
     }
-    req.flash('username', user.email)
+    req.flash('username', user.mobile)
     return res.redirect('login')
   })
 }

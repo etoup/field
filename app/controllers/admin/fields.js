@@ -1,6 +1,6 @@
 var mongoose = require('mongoose')
 var Program = mongoose.model('Program')
-var User = mongoose.model('User')
+var Field = mongoose.model('Field')
 var _ = require('underscore')
 
 // items
@@ -96,8 +96,7 @@ exports.oc = function(req, res) {
 }
 
 exports.index = function(req, res) {
-  User.fetch(function(err,users){
-    console.log(users)
+  Field.fetch(function(err,fields){
     if (err) {
       console.log(err)
     }
@@ -107,8 +106,28 @@ exports.index = function(req, res) {
       title: '场馆管理',
       subtitle:'场馆控制',
       path:path,
-      users:users
+      fields:fields
     })
   })
   
+}
+
+exports.doadd = function(req, res) {
+  req.check('field.name', '请填写场馆名称').notEmpty()
+  req.check('field.mobile', '请填写手机号码').notEmpty()
+  req.check('field.password', '密码长度6-20字符').len(6, 20)
+  var errors = req.validationErrors()
+  if (errors) {
+    req.flash('errors', errors)
+    return res.redirect('/admin/fields/index')
+  }
+  var _field = req.body.field
+  field = new Field(_field)
+  console.log(field)
+  field.save(function(err,field){
+    if (err) {
+      console.log(err)
+    }
+    return res.redirect('/admin/fields/index')
+  })
 }

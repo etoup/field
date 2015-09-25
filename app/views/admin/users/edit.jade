@@ -7,7 +7,7 @@ form(id='form',action='/admin/users/doedit', method='post',role='form')
     .box-body
       .form-group
         label(for='email') 新邮箱地址                
-        input#email.form-control(type='text', name="user[email]",value="#{user.email}",placeholder='新邮箱地址')    
+        input#email.form-control(type='text', name="user[email]",value=user.email,placeholder='新邮箱地址')    
       .form-group
         label(for='mobile') 新手机号码                
         input#mobile.form-control(type='text', name="user[mobile]",value="#{user.mobile}",placeholder='新手机号码')                  

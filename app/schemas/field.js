@@ -1,13 +1,18 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
-var ObjectId = Schema.Types.ObjectId
+var bcrypt = require('bcrypt')
+var SALT_WORK_FACTOR = 10
 
 var FieldSchema = new Schema({
   name: {
     unique: true,
     type: String
   },
-  tel: {
+  mobile: {
+    unique: true,
+    type: String
+  },
+  password: {
     unique: true,
     type: String
   },
@@ -15,7 +20,10 @@ var FieldSchema = new Schema({
     type:Number,
     default:0
   },
-  from: {type: ObjectId, ref: 'User'},
+  role: {
+    type: Number,
+    default: 50  //50-普通；80-高级
+  },
   remark:{
     type:String,
     default:'没有说明内容'
@@ -33,15 +41,36 @@ var FieldSchema = new Schema({
 })
 
 FieldSchema.pre('save', function(next) {
+  var field = this;
+
   if (this.isNew) {
-    this.meta.createAt = this.meta.updateAt = Date.now()
+    this.meta.createAt = this.meta.updateAt = Date.now();
   }
   else {
-    this.meta.updateAt = Date.now()
+    this.meta.updateAt = Date.now();
   }
 
-  next()
+  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+    if (err) return next(err);
+
+    bcrypt.hash(field.password, salt, function(err, hash) {
+      if (err) return next(err);
+
+      field.password = hash;
+      next();
+    })
+  })
 })
+
+FieldSchema.methods = {
+  comparePassword: function(_password, cb) {
+    bcrypt.compare(_password, this.password, function(err, isMatch) {
+      if (err) return cb(err);
+
+      cb(null, isMatch);
+    })
+  }
+}
 
 FieldSchema.statics = {
   fetch: function(cb) {
