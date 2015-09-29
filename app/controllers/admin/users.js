@@ -3,17 +3,24 @@ var User = mongoose.model('User')
 var _ = require('underscore')
 
 exports.index = function(req, res) {
+  var page = parseInt(req.query.p, 10) || 0
+  var count = 2
+  var index = page * count
+
   User.fetch(function(err,users){
     if (err) {
       console.log(err)
     }
 
+    var results = users.slice(index, index + count)
     var path = req.path;
     return res.render('admin/users/index', {
       title: '用户管理',
       subtitle:'用户控制',
       path:path,
-      users:users
+      currentPage: (page + 1),
+      totalPage: Math.ceil(users.length / count),
+      users: results
     })
   })
   
@@ -29,17 +36,28 @@ exports.doadd = function(req, res) {
     req.flash('errors', errors)
     return res.redirect('/admin/users')
   }
+
   var _user = req.body.user
   _user.role = 1
   _user.ip = req.ip
   _user.lastLoginAt = Date.now()
-  user = new User(_user)
-  user.save(function(err,user){
-    if (err) {
-      console.log(err)
+
+  User.findByMobile(_user.mobile,function(err,user){
+    if(user){
+      req.flash('errors', [{msg:'用户重复，请确认'}])
+      return  res.redirect('/admin/users' )
+    }else{
+      user = new User(_user)
+      user.save(function(err,user){
+        if (err) {
+          console.log(err)
+        }
+        req.flash('errors', [{msg:'操作成功'}])
+        return res.redirect('/admin/users')
+      })
     }
-    return res.redirect('/admin/users')
   })
+
 }
 
 exports.edit = function(req, res) {

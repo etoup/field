@@ -10,10 +10,7 @@ var UserSchema = new Schema({
     unique: true,
     type: String
   },
-  password: {
-    unique: true,
-    type: String
-  },
+  password: String,
   ip: String,
   lastLoginAt:  {
       type: Date,
@@ -85,6 +82,11 @@ UserSchema.statics = {
   findById: function(id, cb) {
     return this
       .findOne({_id: id})
+      .exec(cb);
+  },
+  findByMobile: function(mobile, cb) {
+    return this
+      .findOne({mobile: mobile})
       .exec(cb);
   },
   findByRole: function(role, cb) {

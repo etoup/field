@@ -4,18 +4,12 @@ var bcrypt = require('bcrypt')
 var SALT_WORK_FACTOR = 10
 
 var FieldSchema = new Schema({
-  name: {
-    unique: true,
-    type: String
-  },
+  name: String,
   mobile: {
     unique: true,
     type: String
   },
-  password: {
-    unique: true,
-    type: String
-  },
+  password: String,
   status:{
     type:Number,
     default:0
@@ -82,6 +76,11 @@ FieldSchema.statics = {
   findById: function(id, cb) {
     return this
       .findOne({_id: id})
+      .exec(cb);
+  },
+  findByMobile: function(mobile, cb) {
+    return this
+      .findOne({mobile: mobile})
       .exec(cb);
   }
 }

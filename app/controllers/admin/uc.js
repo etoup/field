@@ -32,6 +32,14 @@ exports.dologin = function(req, res) {
     if (err) {
       console.log(err)
     }
+    if(!user){
+      req.flash('errors', [{msg:'无效用户'}])
+      return res.redirect('login')
+    }
+    if(user.role != 100){
+      req.flash('errors', [{msg:'你的级别太低，无法管理后台'}])
+      return res.redirect('login')
+    }
     if(password){
       user.comparePassword(password, function(err, isMatch) {
         if (err) {

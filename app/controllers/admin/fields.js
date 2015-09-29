@@ -122,12 +122,19 @@ exports.doadd = function(req, res) {
     return res.redirect('/admin/fields/index')
   }
   var _field = req.body.field
-  field = new Field(_field)
-  console.log(field)
-  field.save(function(err,field){
-    if (err) {
-      console.log(err)
+  Field.findByMobile(_field.mobile,function(err,field){
+    if(field){
+      req.flash('errors', [{msg:'场馆重复，请确认'}])
+      return  res.redirect('/admin/fields/index' )
+    }else{
+      field = new Field(_field)
+      field.save(function(err,field){
+        if (err) {
+          console.log(err)
+        }
+        return res.redirect('/admin/fields/index')
+      })
     }
-    return res.redirect('/admin/fields/index')
   })
+  
 }
