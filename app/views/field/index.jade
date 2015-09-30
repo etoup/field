@@ -1,60 +1,281 @@
 extends layout
 
 block content
-  // Small boxes (Stat box)
   .row
-    .col-lg-3.col-xs-6
-      // small box
-      .small-box.bg-aqua
-        .inner
-          h3
-            | 181
-            sup(style='font-size: 20px') 位             
-          p 新用户完成注册  
-        .icon
-          i.fa.fa-fw.fa-group           
-        a.small-box-footer(href='#')
-          | 查看信息 
-          i.fa.fa-arrow-circle-right
-    // ./col
-    .col-lg-3.col-xs-6
-      // small box
-      .small-box.bg-green
-        .inner
-          h3
-            | 53
-            sup(style='font-size: 20px') 家               
-          p 新场馆入驻                
-        .icon
-          i.fa.fa-fw.fa-futbol-o
-        a.small-box-footer(href='#')
-          | 查看信息 
-          i.fa.fa-arrow-circle-right
-    // ./col
-    .col-lg-3.col-xs-6
-      // small box
-      .small-box.bg-yellow
-        .inner
-          h3
-            | 280
-            sup(style='font-size: 20px') 场    
-          p 最新场馆预定           
-        .icon
-          i.fa.fa-fw.fa-calendar-plus-o
-        a.small-box-footer(href='#')
-          | 查看信息 
-          i.fa.fa-arrow-circle-right
-    // ./col
-    .col-lg-3.col-xs-6
-      // small box
-      .small-box.bg-red
-        .inner
-          h3
-            | 280
-            sup(style='font-size: 20px') 张
-          p 优惠券被使用            
-        .icon
-          i.fa.fa-fw.fa-object-ungroup     
-        a.small-box-footer(href='#')
-          | 查看信息 
-          i.fa.fa-arrow-circle-right
+              .col-md-3
+                // Profile Image
+                .box.box-primary
+                  .box-body.box-profile
+                    img.profile-user-img.img-responsive.img-circle(src='/libs/AdminLTE/dist/img/user4-128x128.jpg', alt='User profile picture')                  
+                    h3.profile-username.text-center Nina Mcintire             
+                    p.text-muted.text-center Software Engineer         
+                    ul.list-group.list-group-unbordered
+                      li.list-group-item
+                        b Followers
+                        a.pull-right 1,322            
+                      li.list-group-item
+                        b Following
+                        a.pull-right 543         
+                      li.list-group-item
+                        b Friends
+                        a.pull-right 13,287           
+                    a.btn.btn-primary.btn-block(href='#')
+                      b Follow
+                  // /.box-body
+                // /.box
+                // About Me Box
+                .box.box-primary
+                  .box-header.with-border
+                    h3.box-title About Me
+                  // /.box-header
+                  .box-body
+                    strong
+                      i.fa.fa-book.margin-r-5
+                      |   Education                   
+                    p.text-muted
+                      | B.S. in Computer Science from the University of Tennessee at Knoxville                
+                    hr             
+                    strong
+                      i.fa.fa-map-marker.margin-r-5
+                      |  Location                
+                    p.text-muted Malibu, California               
+                    hr         
+                    strong
+                      i.fa.fa-pencil.margin-r-5
+                      |  Skills             
+                    p
+                      span.label.label-danger UI Design               
+                      span.label.label-success Coding              
+                      span.label.label-info Javascript                  
+                      span.label.label-warning PHP          
+                      span.label.label-primary Node.js              
+                    hr            
+                    strong
+                      i.fa.fa-file-text-o.margin-r-5
+                      |  Notes           
+                    p
+                      | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.
+                  // /.box-body
+                // /.box
+              // /.col
+              .col-md-9
+                .nav-tabs-custom
+                  ul.nav.nav-tabs
+                    li.active
+                      a(href='#activity', data-toggle='tab') Activity               
+                    li
+                      a(href='#timeline', data-toggle='tab') Timeline                
+                    li
+                      a(href='#settings', data-toggle='tab') Settings          
+                  .tab-content
+                    #activity.active.tab-pane
+                      // Post
+                      .post
+                        .user-block
+                          img.img-circle.img-bordered-sm(src='/libs/AdminLTE/dist/img/user1-128x128.jpg', alt='user image')                   
+                          span.username
+                            a(href='#') Jonathan Burke Jr.                  
+                            a.pull-right.btn-box-tool(href='#')
+                              i.fa.fa-times                
+                          span.description Shared publicly - 7:30 PM today
+                        // /.user-block
+                        p
+                          | Lorem ipsum represents a long-held tradition for designers,
+                          | typographers and the like. Some people hate it and argue for
+                          | its demise, but others ignore the hate as they create awesome
+                          | tools to help create filler text for everyone from bacon lovers
+                          | to Charlie Sheen fans.     
+                        ul.list-inline
+                          li
+                            a.link-black.text-sm(href='#')
+                              i.fa.fa-share.margin-r-5
+                              |  Share                     
+                          li
+                            a.link-black.text-sm(href='#')
+                              i.fa.fa-thumbs-o-up.margin-r-5
+                              |  Like              
+                          li.pull-right
+                            a.link-black.text-sm(href='#')
+                              i.fa.fa-comments-o.margin-r-5
+                              |  Comments (5)           
+                        input.form-control.input-sm(type='text', placeholder='Type a comment')
+                      // /.post
+                      // Post
+                      .post.clearfix
+                        .user-block
+                          img.img-circle.img-bordered-sm(src='/libs/AdminLTE/dist/img/user7-128x128.jpg', alt='user image')                     
+                          span.username
+                            a(href='#') Sarah Ross                    
+                            a.pull-right.btn-box-tool(href='#')
+                              i.fa.fa-times              
+                          span.description Sent you a message - 3 days ago
+                        // /.user-block
+                        p
+                          | Lorem ipsum represents a long-held tradition for designers,
+                          | typographers and the like. Some people hate it and argue for
+                          | its demise, but others ignore the hate as they create awesome
+                          | tools to help create filler text for everyone from bacon lovers
+                          | to Charlie Sheen fans.               
+                        form.form-horizontal
+                          .form-group.margin-bottom-none
+                            .col-sm-9
+                              input.form-control.input-sm(placeholder='Response')                        
+                            .col-sm-3
+                              button.btn.btn-danger.pull-right.btn-block.btn-sm Send
+                      // /.post
+                      // Post
+                      .post
+                        .user-block
+                          img.img-circle.img-bordered-sm(src='/libs/AdminLTE/dist/img/user6-128x128.jpg', alt='user image')                     
+                          span.username
+                            a(href='#') Adam Jones                    
+                            a.pull-right.btn-box-tool(href='#')
+                              i.fa.fa-times                
+                          span.description Posted 5 photos - 5 days ago
+                        // /.user-block
+                        .row.margin-bottom
+                          .col-sm-6
+                            img.img-responsive(src='/libs/AdminLTE/dist/img/photo1.png', alt='Photo')
+                          // /.col
+                          .col-sm-6
+                            .row
+                              .col-sm-6
+                                img.img-responsive(src='/libs/AdminLTE/dist/img/photo2.png', alt='Photo')                          
+                                br                           
+                                img.img-responsive(src='/libs/AdminLTE/dist/img/photo3.jpg', alt='Photo')
+                              // /.col
+                              .col-sm-6
+                                img.img-responsive(src='/libs/AdminLTE/dist/img/photo4.jpg', alt='Photo')                           
+                                br                         
+                                img.img-responsive(src='/libs/AdminLTE/dist/img/photo1.png', alt='Photo')
+                              // /.col
+                            // /.row
+                          // /.col
+                        // /.row
+                        ul.list-inline
+                          li
+                            a.link-black.text-sm(href='#')
+                              i.fa.fa-share.margin-r-5
+                              |  Share                  
+                          li
+                            a.link-black.text-sm(href='#')
+                              i.fa.fa-thumbs-o-up.margin-r-5
+                              |  Like                
+                          li.pull-right
+                            a.link-black.text-sm(href='#')
+                              i.fa.fa-comments-o.margin-r-5
+                              |  Comments (5)               
+                        input.form-control.input-sm(type='text', placeholder='Type a comment')
+                      // /.post
+                    // /.tab-pane
+                    #timeline.tab-pane
+                      // The timeline
+                      ul.timeline.timeline-inverse
+                        // timeline time label
+                        li.time-label
+                          span.bg-red
+                            | 10 Feb. 2014
+                        // /.timeline-label
+                        // timeline item
+                        li
+                          i.fa.fa-envelope.bg-blue                    
+                          .timeline-item
+                            span.time
+                              i.fa.fa-clock-o
+                              |  12:05                     
+                            h3.timeline-header
+                              a(href='#') Support Team
+                              |  sent you an email                    
+                            .timeline-body
+                              | Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
+                              | weebly ning heekya handango imeem plugg dopplr jibjab, movity
+                              | jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
+                              | quora plaxo ideeli hulu weebly balihoo...                  
+                            .timeline-footer
+                              a.btn.btn-primary.btn-xs Read more                       
+                              a.btn.btn-danger.btn-xs Delete
+                        // END timeline item
+                        // timeline item
+                        li
+                          i.fa.fa-user.bg-aqua                      
+                          .timeline-item
+                            span.time
+                              i.fa.fa-clock-o
+                              |  5 mins ago                    
+                            h3.timeline-header.no-border
+                              a(href='#') Sarah Young
+                              |  accepted your friend request
+                        // END timeline item
+                        // timeline item
+                        li
+                          i.fa.fa-comments.bg-yellow              
+                          .timeline-item
+                            span.time
+                              i.fa.fa-clock-o
+                              |  27 mins ago                    
+                            h3.timeline-header
+                              a(href='#') Jay White
+                              |  commented on your post               
+                            .timeline-body
+                              | Take me to your leader!
+                              | Switzerland is small and neutral!
+                              | We are more like Germany, ambitious and misunderstood!                    
+                            .timeline-footer
+                              a.btn.btn-warning.btn-flat.btn-xs View comment
+                        // END timeline item
+                        // timeline time label
+                        li.time-label
+                          span.bg-green
+                            | 3 Jan. 2014
+                        // /.timeline-label
+                        // timeline item
+                        li
+                          i.fa.fa-camera.bg-purple                     
+                          .timeline-item
+                            span.time
+                              i.fa.fa-clock-o
+                              |  2 days ago                     
+                            h3.timeline-header
+                              a(href='#') Mina Lee
+                              |  uploaded new photos                       
+                            .timeline-body
+                              img.margin(src='http://placehold.it/150x100', alt='...')                      
+                              img.margin(src='http://placehold.it/150x100', alt='...')                        
+                              img.margin(src='http://placehold.it/150x100', alt='...')                        
+                              img.margin(src='http://placehold.it/150x100', alt='...')
+                        // END timeline item
+                        li
+                          i.fa.fa-clock-o.bg-gray
+                    // /.tab-pane
+                    #settings.tab-pane
+                      form.form-horizontal
+                        .form-group
+                          label.col-sm-2.control-label(for='inputName') Name               
+                          .col-sm-10
+                            input#inputName.form-control(type='email', placeholder='Name')                    
+                        .form-group
+                          label.col-sm-2.control-label(for='inputEmail') Email                 
+                          .col-sm-10
+                            input#inputEmail.form-control(type='email', placeholder='Email')                 
+                        .form-group
+                          label.col-sm-2.control-label(for='inputName') Name                    
+                          .col-sm-10
+                            input#inputName.form-control(type='text', placeholder='Name')                 
+                        .form-group
+                          label.col-sm-2.control-label(for='inputExperience') Experience            
+                          .col-sm-10
+                            textarea#inputExperience.form-control(placeholder='Experience')              
+                        .form-group
+                          label.col-sm-2.control-label(for='inputSkills') Skills                    
+                          .col-sm-10
+                            input#inputSkills.form-control(type='text', placeholder='Skills')               
+                        .form-group
+                          .col-sm-offset-2.col-sm-10
+                            .checkbox
+                              label
+                                input(type='checkbox')
+                                |  I agree to the 
+                                a(href='#') terms and conditions      
+                        .form-group
+                          .col-sm-offset-2.col-sm-10
+                            button.btn.btn-danger(type='submit') Submit

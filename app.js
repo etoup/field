@@ -17,25 +17,30 @@ var app = express();
 
 var dbUrl = 'mongodb://localhost/fields';
 mongoose.connect(dbUrl);
-// models loading
-var models_path = __dirname + '/app/models';
-var walk = function(path) {
+
+var walk = function(path,app) {
   fs
     .readdirSync(path)
     .forEach(function(file) {
-      var newPath = path + '/' + file;
-      var stat = fs.statSync(newPath);
+      var newPath = path + '/' + file
+      var stat = fs.statSync(newPath)
 
       if (stat.isFile()) {
         if (/(.*)\.(js|coffee)/.test(file)) {
-          require(newPath);
+          if(app)
+            require(newPath)(app)
+          else
+            require(newPath)
         }
       }
       else if (stat.isDirectory()) {
-        walk(newPath);
+        walk(newPath)
       }
     })
-};
+}
+
+// models loading
+var models_path = __dirname + '/app/models';
 walk(models_path);
 
 // view engine setup
@@ -62,11 +67,12 @@ app.use(session({
 }));
 app.use(flash({ locals: 'flash' }));
 
-require('./routes/admin/index')(app); 
-require('./routes/admin/uc')(app); 
-require('./routes/admin/setting')(app); 
-require('./routes/admin/users')(app); 
-require('./routes/admin/fields')(app); 
+// admin routes loading
+var admin_routes_path = __dirname + '/app/routes/admin';
+walk(admin_routes_path,app);
+// field routes loading
+var field_routes_path = __dirname + '/app/routes/field';
+walk(field_routes_path,app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -22,6 +22,10 @@ var FieldSchema = new Schema({
     type:String,
     default:'没有说明内容'
   },
+  lastLoginAt:  {
+    type: Date,
+    default: Date.now()
+  },
   meta: {
     createAt: {
       type: Date,
@@ -82,6 +86,11 @@ FieldSchema.statics = {
     return this
       .findOne({mobile: mobile})
       .exec(cb);
+  },
+  doLogin:function(id,cb){
+    return this
+      .update({_id:id},{lastLoginAt:Date.now()})
+      .exec(cb)
   }
 }
 

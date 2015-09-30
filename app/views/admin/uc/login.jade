@@ -38,12 +38,12 @@ html
           form(id='form',action='/admin/uc/login', method='post')
             .form-group.has-feedback
               if username
-                input.form-control(type='mobile', name='mobile', id='mobile',value=username , check-type='mobile required',mobile-message='请填写手机号码',placeholder='邮箱')       
+                input.form-control(type='mobile', name='mobile', id='mobile',value=username , check-type='mobile required',mobile-message='请填写手机号码',placeholder='手机号码')       
               else if flash.username
-                input.form-control(type='mobile', name='mobile', id='mobile',value=flash.username , check-type='mobile required',mobile-message='请填写手机号码',placeholder='邮箱')       
+                input.form-control(type='mobile', name='mobile', id='mobile',value=flash.username , check-type='mobile required',mobile-message='请填写手机号码',placeholder='手机号码')       
               else
-                input.form-control(type='mobile', name='mobile', id='mobile',value=username , check-type='mobile required',mobile-message='请填写手机号码',placeholder='邮箱')       
-              span.glyphicon.glyphicon-envelope.form-control-feedback   
+                input.form-control(type='mobile', name='mobile', id='mobile',value=username , check-type='mobile required',mobile-message='请填写手机号码',placeholder='手机号码')       
+              span.glyphicon.glyphicon-phone.form-control-feedback   
             .form-group.has-feedback
               input.form-control(type='password', name='password',id='password',check-type='required',required-message='请填写登录密码',minlength='6',placeholder='密码')         
               span.glyphicon.glyphicon-lock.form-control-feedback      

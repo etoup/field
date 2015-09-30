@@ -19,21 +19,26 @@ script(src='/libs/AdminLTE/plugins/chartjs/Chart.min.js')
 script(src='/libs/sweetalert/dist/sweetalert.min.js')
 // jgrowl
 script(src='/libs/jGrowl/jquery.jgrowl.min.js')
-if flash.msg 
-  //-script.
-    swal({
-      title: "#{flash.msg}",
-      timer: 2000,
-      showConfirmButton: false,
-      type: "success",
-    });
-  script.
-    $.jGrowl("#{flash.msg}", {
-      life: 2000,
-      theme:  'manilla',
-      speed:  'slow'
-    });
-// AdminLTE dashboard demo (This is only for demo purposes)
-//script(src='/libs/AdminLTE/dist/js/pages/dashboard2.js')
-// AdminLTE for demo purposes
-//script(src='/libs/AdminLTE/dist/js/demo.js')
+// my
+script(src='/javascripts/js.js')
+script.
+  $('ul.sidebar-menu>li>a').each(function(){
+    var href = $(this).attr('href');
+    if(href == '#{path}'){
+      $(this).parent('li').addClass('active').siblings('li').removeClass('active');
+    }
+  })
+  $('ul.treeview-menu>li>a').each(function(){
+    var href = $(this).attr('href');
+    if(href == '#{path}'){
+      $(this).parent('li').addClass('active').siblings('li').removeClass('active').parent('ul').parent('li').addClass('active').siblings('li').removeClass('active');
+    }
+  })
+if flash.errors
+  each item in flash.errors
+    script.
+      $.jGrowl("#{item.msg}", {
+        life: 2000,
+        theme:  'manilla',
+        speed:  'slow'
+      });

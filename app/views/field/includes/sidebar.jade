@@ -5,10 +5,10 @@ section.sidebar
     .pull-left.image
       img.img-circle(src='/libs/AdminLTE/dist/img/user2-160x160.jpg', alt='User Image')           
     .pull-left.info
-      p #{user.email}   
+      p #{field.name}   
       a(href='#')
         i.fa.fa-circle.text-success
-        |  上次登录：#{moment(user.lastLoginAt).format('YY-MM-DD HH:mm')}
+        |  场馆管理员
   // search form
   form.sidebar-form(action='#', method='get')
     .input-group
@@ -19,26 +19,71 @@ section.sidebar
   // sidebar menu: : style can be found in sidebar.less
   ul.sidebar-menu
     li.header 导航列表  
-    each item in navs
-      if item.child
-        li.treeview
-          a(href='#')
-            i.fa.fa-th
-            span #{item.title}
-            small.label.pull-right.bg-green new
-          ul.treeview-menu
-            each val in  item.child
-              li
-                a(href='#{val.url}')
-                  i.fa.fa-circle-o
-                  |  #{val.title}
-      else
+    li
+      a(href='/field')
+        i.fa.fa-dashboard
+        span 场馆首页
+    li
+    li.treeview
+      a(href='#')
+        i.fa.fa-gears
+        span 系统设置
+        i.fa.fa-angle-left.pull-right
+      ul.treeview-menu
         li
-          a(href='#{item.url}')
-            i.fa.fa-th
-            span #{item.title}
-            small.label.pull-right.bg-green new  
-    
+          a(href='/admin/setting/picture')
+            i.fa.fa-circle-o
+            |  全局设置            
+        li
+          a(href='/admin/setting/integral')
+            i.fa.fa-circle-o
+            |  积分设置
+        li
+          a(href='/admin/setting/sign')
+            i.fa.fa-circle-o
+            |  签到设置
+        li
+          a(href='/admin/setting/invite')
+            i.fa.fa-circle-o
+            |  邀请码设置
+        li
+          a(href='/admin/setting/discount')
+            i.fa.fa-circle-o
+            |  优惠码设置
+    li.treeview
+      a(href='/admin/users')
+        i.fa.fa-group                
+        span 用户管理            
+        span.label.label-primary.pull-right 4  
+    li.treeview
+      a(href='#')
+        i.fa.fa-th
+        span 场馆管理
+        i.fa.fa-angle-left.pull-right
+      ul.treeview-menu
+        li
+          a(href='/admin/fields/items')
+            i.fa.fa-circle-o
+            |  运动项目              
+        li
+          a(href='/admin/fields/index')
+            i.fa.fa-circle-o
+            |  场馆列表             
+    li
+      a(href='/admin/orders')
+        i.fa.fa-calendar
+        span 订单管理           
+        small.label.pull-right.bg-red 3  
+    li
+      a(href='/admin/rules')
+        i.fa.fa-briefcase
+        span 规则管理             
+        small.label.pull-right.bg-yellow 12  
+    li
+      a(href='/admin/balance')
+        i.fa.fa-calculator
+        span 结算管理             
+        small.label.pull-right.bg-green new
     li.header 快捷操作
     li
       a(href='#')

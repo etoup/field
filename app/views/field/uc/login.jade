@@ -25,36 +25,29 @@ html
   body.hold-transition.login-page
     .login-box
       .login-logo
-        a(href='/admin') LOGO
+        a(href='/field') LOGO
       .login-box-body
-        if passreg
-          .social-auth-links.text-center
-            p - 注意 -            
-            a.btn.btn-block.btn-social.btn-google.btn-flat(href='reg')
-              i.fa.fa-exclamation-triangle
-              |  第一次来到后台，请先完成初始化工作
-        else
-          p.login-box-msg 登录后进入管理后台      
-          form(id='form',action='/admin/login', method='post')
-            .form-group.has-feedback
-              if username
-                input.form-control(type='email', name='email', id='email',value=username , check-type='mail required',mail-message='请填写邮箱地址',placeholder='邮箱')       
-              else if flash.username
-                input.form-control(type='email', name='email', id='email',value=flash.username , check-type='mail required',mail-message='请填写邮箱地址',placeholder='邮箱')       
-              else
-                input.form-control(type='email', name='email', id='email',value=username , check-type='mail required',mail-message='请填写邮箱地址',placeholder='邮箱')       
-              span.glyphicon.glyphicon-envelope.form-control-feedback   
-            .form-group.has-feedback
-              input.form-control(type='password', name='password',id='password',check-type='required',required-message='请填写登录密码',minlength='6',placeholder='密码')         
-              span.glyphicon.glyphicon-lock.form-control-feedback      
-            .row
-              .col-xs-8
-                .checkbox.icheck
-                  label
-                    input(type='checkbox',name='rememberme',value='1')
-                    |  记住我
-              .col-xs-4
-                button.btn.btn-primary.btn-block.btn-flat(id='submit',type='submit') 登录
+        p.login-box-msg 登录后进入场馆管理后台      
+        form(id='form',action='/field/uc/login', method='post')
+          .form-group.has-feedback
+            if fieldname
+              input.form-control(type='mobile', name='mobile', id='mobile',value=fieldname , check-type='mobile required',mobile-message='请填写手机号码',placeholder='手机号码')       
+            else if flash.fieldname
+              input.form-control(type='mobile', name='mobile', id='mobile',value=flash.fieldname , check-type='mobile required',mobile-message='请填写手机号码',placeholder='手机号码')       
+            else
+              input.form-control(type='mobile', name='mobile', id='mobile',value=fieldname , check-type='mobile required',mobile-message='请填写手机号码',placeholder='手机号码')       
+            span.glyphicon.glyphicon-phone.form-control-feedback   
+          .form-group.has-feedback
+            input.form-control(type='password', name='password',id='password',check-type='required',required-message='请填写登录密码',minlength='6',placeholder='密码')         
+            span.glyphicon.glyphicon-lock.form-control-feedback      
+          .row
+            .col-xs-8
+              .checkbox.icheck
+                label
+                  input(type='checkbox',name='rememberme',value='1')
+                  |  记住我
+            .col-xs-4
+              button.btn.btn-primary.btn-block.btn-flat(id='submit',type='submit') 登录
   // jQuery 2.1.4
   script(src='/libs/AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js')
   // Bootstrap 3.3.5
