@@ -73,6 +73,9 @@ walk(admin_routes_path,app);
 // field routes loading
 var field_routes_path = __dirname + '/app/routes/field';
 walk(field_routes_path,app);
+// open routes loading
+var open_routes_path = __dirname + '/app/routes/open';
+walk(open_routes_path,app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

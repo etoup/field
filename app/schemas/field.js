@@ -1,5 +1,6 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
+var ObjectId = Schema.Types.ObjectId
 var bcrypt = require('bcrypt')
 var SALT_WORK_FACTOR = 10
 
@@ -18,6 +19,7 @@ var FieldSchema = new Schema({
     type: Number,
     default: 50  //50-普通；80-高级
   },
+  program: [{ type: ObjectId, ref: 'Program' }],
   remark:{
     type:String,
     default:'没有说明内容'

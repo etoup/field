@@ -15,6 +15,8 @@ script(src='/libs/AdminLTE/plugins/jvectormap/jquery-jvectormap-world-mill-en.js
 script(src='/libs/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js')
 // ChartJS 1.0.1
 script(src='/libs/AdminLTE/plugins/chartjs/Chart.min.js')
+// Select2
+script(src='/libs/AdminLTE/plugins/select2/select2.full.min.js')
 // sweetalert
 script(src='/libs/sweetalert/dist/sweetalert.min.js')
 // jgrowl
@@ -22,6 +24,7 @@ script(src='/libs/jGrowl/jquery.jgrowl.min.js')
 // my
 script(src='/javascripts/js.js')
 script.
+  $(".select2").select2();
   $('ul.sidebar-menu>li>a').each(function(){
     var href = $(this).attr('href');
     if(href == '#{path}'){

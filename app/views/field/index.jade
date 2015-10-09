@@ -1,281 +1,362 @@
 extends layout
 
 block content
+  link(rel='stylesheet', href='/stylesheets/icon/iconfont.css')
   .row
-              .col-md-3
-                // Profile Image
-                .box.box-primary
-                  .box-body.box-profile
-                    img.profile-user-img.img-responsive.img-circle(src='/libs/AdminLTE/dist/img/user4-128x128.jpg', alt='User profile picture')                  
-                    h3.profile-username.text-center Nina Mcintire             
-                    p.text-muted.text-center Software Engineer         
-                    ul.list-group.list-group-unbordered
-                      li.list-group-item
-                        b Followers
-                        a.pull-right 1,322            
-                      li.list-group-item
-                        b Following
-                        a.pull-right 543         
-                      li.list-group-item
-                        b Friends
-                        a.pull-right 13,287           
-                    a.btn.btn-primary.btn-block(href='#')
-                      b Follow
-                  // /.box-body
-                // /.box
-                // About Me Box
-                .box.box-primary
-                  .box-header.with-border
-                    h3.box-title About Me
-                  // /.box-header
-                  .box-body
-                    strong
-                      i.fa.fa-book.margin-r-5
-                      |   Education                   
-                    p.text-muted
-                      | B.S. in Computer Science from the University of Tennessee at Knoxville                
-                    hr             
-                    strong
-                      i.fa.fa-map-marker.margin-r-5
-                      |  Location                
-                    p.text-muted Malibu, California               
-                    hr         
-                    strong
-                      i.fa.fa-pencil.margin-r-5
-                      |  Skills             
-                    p
-                      span.label.label-danger UI Design               
-                      span.label.label-success Coding              
-                      span.label.label-info Javascript                  
-                      span.label.label-warning PHP          
-                      span.label.label-primary Node.js              
-                    hr            
-                    strong
-                      i.fa.fa-file-text-o.margin-r-5
-                      |  Notes           
-                    p
-                      | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.
-                  // /.box-body
-                // /.box
-              // /.col
-              .col-md-9
-                .nav-tabs-custom
-                  ul.nav.nav-tabs
-                    li.active
-                      a(href='#activity', data-toggle='tab') Activity               
-                    li
-                      a(href='#timeline', data-toggle='tab') Timeline                
-                    li
-                      a(href='#settings', data-toggle='tab') Settings          
-                  .tab-content
-                    #activity.active.tab-pane
-                      // Post
-                      .post
-                        .user-block
-                          img.img-circle.img-bordered-sm(src='/libs/AdminLTE/dist/img/user1-128x128.jpg', alt='user image')                   
-                          span.username
-                            a(href='#') Jonathan Burke Jr.                  
-                            a.pull-right.btn-box-tool(href='#')
-                              i.fa.fa-times                
-                          span.description Shared publicly - 7:30 PM today
-                        // /.user-block
-                        p
-                          | Lorem ipsum represents a long-held tradition for designers,
-                          | typographers and the like. Some people hate it and argue for
-                          | its demise, but others ignore the hate as they create awesome
-                          | tools to help create filler text for everyone from bacon lovers
-                          | to Charlie Sheen fans.     
-                        ul.list-inline
-                          li
-                            a.link-black.text-sm(href='#')
-                              i.fa.fa-share.margin-r-5
-                              |  Share                     
-                          li
-                            a.link-black.text-sm(href='#')
-                              i.fa.fa-thumbs-o-up.margin-r-5
-                              |  Like              
-                          li.pull-right
-                            a.link-black.text-sm(href='#')
-                              i.fa.fa-comments-o.margin-r-5
-                              |  Comments (5)           
-                        input.form-control.input-sm(type='text', placeholder='Type a comment')
-                      // /.post
-                      // Post
-                      .post.clearfix
-                        .user-block
-                          img.img-circle.img-bordered-sm(src='/libs/AdminLTE/dist/img/user7-128x128.jpg', alt='user image')                     
-                          span.username
-                            a(href='#') Sarah Ross                    
-                            a.pull-right.btn-box-tool(href='#')
-                              i.fa.fa-times              
-                          span.description Sent you a message - 3 days ago
-                        // /.user-block
-                        p
-                          | Lorem ipsum represents a long-held tradition for designers,
-                          | typographers and the like. Some people hate it and argue for
-                          | its demise, but others ignore the hate as they create awesome
-                          | tools to help create filler text for everyone from bacon lovers
-                          | to Charlie Sheen fans.               
-                        form.form-horizontal
-                          .form-group.margin-bottom-none
-                            .col-sm-9
-                              input.form-control.input-sm(placeholder='Response')                        
-                            .col-sm-3
-                              button.btn.btn-danger.pull-right.btn-block.btn-sm Send
-                      // /.post
-                      // Post
-                      .post
-                        .user-block
-                          img.img-circle.img-bordered-sm(src='/libs/AdminLTE/dist/img/user6-128x128.jpg', alt='user image')                     
-                          span.username
-                            a(href='#') Adam Jones                    
-                            a.pull-right.btn-box-tool(href='#')
-                              i.fa.fa-times                
-                          span.description Posted 5 photos - 5 days ago
-                        // /.user-block
-                        .row.margin-bottom
-                          .col-sm-6
-                            img.img-responsive(src='/libs/AdminLTE/dist/img/photo1.png', alt='Photo')
-                          // /.col
-                          .col-sm-6
-                            .row
-                              .col-sm-6
-                                img.img-responsive(src='/libs/AdminLTE/dist/img/photo2.png', alt='Photo')                          
-                                br                           
-                                img.img-responsive(src='/libs/AdminLTE/dist/img/photo3.jpg', alt='Photo')
-                              // /.col
-                              .col-sm-6
-                                img.img-responsive(src='/libs/AdminLTE/dist/img/photo4.jpg', alt='Photo')                           
-                                br                         
-                                img.img-responsive(src='/libs/AdminLTE/dist/img/photo1.png', alt='Photo')
-                              // /.col
-                            // /.row
-                          // /.col
-                        // /.row
-                        ul.list-inline
-                          li
-                            a.link-black.text-sm(href='#')
-                              i.fa.fa-share.margin-r-5
-                              |  Share                  
-                          li
-                            a.link-black.text-sm(href='#')
-                              i.fa.fa-thumbs-o-up.margin-r-5
-                              |  Like                
-                          li.pull-right
-                            a.link-black.text-sm(href='#')
-                              i.fa.fa-comments-o.margin-r-5
-                              |  Comments (5)               
-                        input.form-control.input-sm(type='text', placeholder='Type a comment')
-                      // /.post
-                    // /.tab-pane
-                    #timeline.tab-pane
-                      // The timeline
-                      ul.timeline.timeline-inverse
-                        // timeline time label
-                        li.time-label
-                          span.bg-red
-                            | 10 Feb. 2014
-                        // /.timeline-label
-                        // timeline item
-                        li
-                          i.fa.fa-envelope.bg-blue                    
-                          .timeline-item
-                            span.time
-                              i.fa.fa-clock-o
-                              |  12:05                     
-                            h3.timeline-header
-                              a(href='#') Support Team
-                              |  sent you an email                    
-                            .timeline-body
-                              | Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                              | weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                              | jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                              | quora plaxo ideeli hulu weebly balihoo...                  
-                            .timeline-footer
-                              a.btn.btn-primary.btn-xs Read more                       
-                              a.btn.btn-danger.btn-xs Delete
-                        // END timeline item
-                        // timeline item
-                        li
-                          i.fa.fa-user.bg-aqua                      
-                          .timeline-item
-                            span.time
-                              i.fa.fa-clock-o
-                              |  5 mins ago                    
-                            h3.timeline-header.no-border
-                              a(href='#') Sarah Young
-                              |  accepted your friend request
-                        // END timeline item
-                        // timeline item
-                        li
-                          i.fa.fa-comments.bg-yellow              
-                          .timeline-item
-                            span.time
-                              i.fa.fa-clock-o
-                              |  27 mins ago                    
-                            h3.timeline-header
-                              a(href='#') Jay White
-                              |  commented on your post               
-                            .timeline-body
-                              | Take me to your leader!
-                              | Switzerland is small and neutral!
-                              | We are more like Germany, ambitious and misunderstood!                    
-                            .timeline-footer
-                              a.btn.btn-warning.btn-flat.btn-xs View comment
-                        // END timeline item
-                        // timeline time label
-                        li.time-label
-                          span.bg-green
-                            | 3 Jan. 2014
-                        // /.timeline-label
-                        // timeline item
-                        li
-                          i.fa.fa-camera.bg-purple                     
-                          .timeline-item
-                            span.time
-                              i.fa.fa-clock-o
-                              |  2 days ago                     
-                            h3.timeline-header
-                              a(href='#') Mina Lee
-                              |  uploaded new photos                       
-                            .timeline-body
-                              img.margin(src='http://placehold.it/150x100', alt='...')                      
-                              img.margin(src='http://placehold.it/150x100', alt='...')                        
-                              img.margin(src='http://placehold.it/150x100', alt='...')                        
-                              img.margin(src='http://placehold.it/150x100', alt='...')
-                        // END timeline item
-                        li
-                          i.fa.fa-clock-o.bg-gray
-                    // /.tab-pane
-                    #settings.tab-pane
-                      form.form-horizontal
-                        .form-group
-                          label.col-sm-2.control-label(for='inputName') Name               
-                          .col-sm-10
-                            input#inputName.form-control(type='email', placeholder='Name')                    
-                        .form-group
-                          label.col-sm-2.control-label(for='inputEmail') Email                 
-                          .col-sm-10
-                            input#inputEmail.form-control(type='email', placeholder='Email')                 
-                        .form-group
-                          label.col-sm-2.control-label(for='inputName') Name                    
-                          .col-sm-10
-                            input#inputName.form-control(type='text', placeholder='Name')                 
-                        .form-group
-                          label.col-sm-2.control-label(for='inputExperience') Experience            
-                          .col-sm-10
-                            textarea#inputExperience.form-control(placeholder='Experience')              
-                        .form-group
-                          label.col-sm-2.control-label(for='inputSkills') Skills                    
-                          .col-sm-10
-                            input#inputSkills.form-control(type='text', placeholder='Skills')               
-                        .form-group
-                          .col-sm-offset-2.col-sm-10
-                            .checkbox
-                              label
-                                input(type='checkbox')
-                                |  I agree to the 
-                                a(href='#') terms and conditions      
-                        .form-group
-                          .col-sm-offset-2.col-sm-10
-                            button.btn.btn-danger(type='submit') Submit
+    .col-md-3
+      // Profile Image
+      .box.box-primary
+        .box-body.box-profile
+          img.profile-user-img.img-responsive.img-circle(src='/libs/AdminLTE/dist/img/user4-128x128.jpg', alt='User profile picture')                  
+          h3.profile-username.text-center #{field.name}            
+        // /.box-body
+      // /.box
+      a.btn.btn-primary.btn-block.margin-bottom(href='#',data-toggle="modal",data-target="#myModal") 添加项目  
+      .modal.modal.fade(id="myModal",tabindex="-1",role="dialog")
+        .modal-dialog.modal-sm
+          .modal-content
+            form(id='form',action='/admin/fields/doadd', method='post',role='form')
+              .modal-header
+                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                  span(aria-hidden='true') &times;               
+                h4.modal-title 新增场馆项目             
+              .modal-body
+                .box-body
+                  .form-group              
+                    select.form-control.select2(multiple='multiple', data-placeholder='Select a State', style='width: 100%;')
+                      option Alabama          
+                      option Alaska                 
+                      option California                   
+                      option Delaware                   
+                      option Tennessee                  
+                      option Texas                 
+                      option Washington                       
+              .modal-footer
+                button.btn.btn-default.pull-left(type='button', data-dismiss='modal') 关闭        
+                button.btn.btn-primary(type='submit') 提交          
+      .box.box-solid
+        .box-header.with-border
+          h3.box-title 项目列表     
+          .box-tools
+            button.btn.btn-box-tool(data-widget='collapse')
+              i.fa.fa-minus 
+        .box-body.no-padding
+          ul.nav.nav-pills.nav-stacked
+            li.active
+              a(href='#')
+                i.icon.iconfont &#xe613;
+                |  羽毛球
+                span.label.label-primary.pull-right 12             
+            li
+              a(href='#')
+                i.icon.iconfont &#xe616;
+                |  足球                 
+            li
+              a(href='#')
+                i.icon.iconfont &#xe60b;
+                |  篮球 
+            li
+              a(href='#')
+                i.icon.iconfont &#xea03;
+                |  网球 
+                span.label.label-warning.pull-right 65                   
+            li
+              a(href='#')
+                i.icon.iconfont &#xe611;
+                |  游泳
+      // About Me Box
+      .box.box-solid
+        .box-header.with-border
+          h3.box-title 关于我们     
+          .box-tools
+            button.btn.btn-box-tool(data-widget='collapse')
+              i.fa.fa-minus 
+        .box-body
+          strong
+            i.fa.fa-book.margin-r-5
+            |   简介                 
+          p.text-muted
+            | 新开放羽毛球馆，场地全新。场馆营业时间室外跑道、足球场和篮球场可免费使用。                
+          hr             
+          strong
+            i.fa.fa-map-marker.margin-r-5
+            |  定位               
+          p.text-muted 嘉定区和静路1388号（近新源路）                    
+          hr            
+          strong
+            i.fa.fa-phone.margin-r-5
+            |  电话           
+          p
+            | 021-67720862
+          hr         
+          strong
+            i.fa.fa-server.margin-r-5
+            |  服务            
+          p
+            span.label.label-danger(style="margin-right:5px;") 免费停车场               
+            span.label.label-success(style="margin-right:5px;") VIP休息室              
+            span.label.label-info(style="margin-right:5px;") 运行相关产品                 
+            span.label.label-warning(style="margin-right:5px;") 柜子租赁         
+            span.label.label-primary 活动区  
+          hr         
+          strong
+            i.fa.fa-camera-retro.margin-r-5
+            |  相册            
+          p
+            span.mailbox-attachment-icon.has-img
+              #carousel-example-generic.carousel.slide(data-ride='carousel')
+                ol.carousel-indicators
+                  li.active(data-target='#carousel-example-generic', data-slide-to='0')                     
+                  li(data-target='#carousel-example-generic', data-slide-to='1')                   
+                  li(data-target='#carousel-example-generic', data-slide-to='2')               
+                .carousel-inner
+                  .item.active
+                    img(src='http://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap', alt='First slide')                     
+                    .carousel-caption
+                      | First Slide               
+                  .item
+                    img(src='http://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap', alt='Second slide')                       
+                    .carousel-caption
+                      | Second Slide                
+                  .item
+                    img(src='http://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap', alt='Third slide')                      
+                    .carousel-caption
+                      | Third Slide           
+                a.left.carousel-control(href='#carousel-example-generic', data-slide='prev')
+                  span.fa.fa-angle-left       
+                a.right.carousel-control(href='#carousel-example-generic', data-slide='next')
+                  span.fa.fa-angle-right           
+            .mailbox-attachment-info
+              a.mailbox-attachment-name(href='#')
+                i.fa.fa-camera
+                |  photo1.png                      
+              span.mailbox-attachment-size
+                | 2.67 MB
+                a.btn.btn-default.btn-xs.pull-right(href='#')
+                  i.fa.fa-cloud-download        
+
+          
+        // /.box-body
+      // /.box
+    // /.col
+    .col-md-9
+      .nav-tabs-custom
+        ul.nav.nav-tabs
+          li.active
+            a(href='#activity', data-toggle='tab') 场地列表       
+          li
+            a(href='#timeline', data-toggle='tab') 评论列表             
+          li
+            a(href='#settings', data-toggle='tab') 设置          
+        .tab-content
+          #activity.active.tab-pane
+            // Post
+            .post
+              .user-block
+                img.img-circle.img-bordered-sm(src='/libs/AdminLTE/dist/img/user1-128x128.jpg', alt='user image')                   
+                span.username
+                  a(href='#') Jonathan Burke Jr.                  
+                  a.pull-right.btn-box-tool(href='#')
+                    i.fa.fa-times                
+                span.description Shared publicly - 7:30 PM today
+              // /.user-block
+              p
+                | Lorem ipsum represents a long-held tradition for designers,
+                | typographers and the like. Some people hate it and argue for
+                | its demise, but others ignore the hate as they create awesome
+                | tools to help create filler text for everyone from bacon lovers
+                | to Charlie Sheen fans.     
+              ul.list-inline
+                li
+                  a.link-black.text-sm(href='#')
+                    i.fa.fa-share.margin-r-5
+                    |  Share                     
+                li
+                  a.link-black.text-sm(href='#')
+                    i.fa.fa-thumbs-o-up.margin-r-5
+                    |  Like              
+                li.pull-right
+                  a.link-black.text-sm(href='#')
+                    i.fa.fa-comments-o.margin-r-5
+                    |  Comments (5)           
+              input.form-control.input-sm(type='text', placeholder='Type a comment')
+            // /.post
+            // Post
+            .post.clearfix
+              .user-block
+                img.img-circle.img-bordered-sm(src='/libs/AdminLTE/dist/img/user7-128x128.jpg', alt='user image')                     
+                span.username
+                  a(href='#') Sarah Ross                    
+                  a.pull-right.btn-box-tool(href='#')
+                    i.fa.fa-times              
+                span.description Sent you a message - 3 days ago
+              // /.user-block
+              p
+                | Lorem ipsum represents a long-held tradition for designers,
+                | typographers and the like. Some people hate it and argue for
+                | its demise, but others ignore the hate as they create awesome
+                | tools to help create filler text for everyone from bacon lovers
+                | to Charlie Sheen fans.               
+              form.form-horizontal
+                .form-group.margin-bottom-none
+                  .col-sm-9
+                    input.form-control.input-sm(placeholder='Response')                        
+                  .col-sm-3
+                    button.btn.btn-danger.pull-right.btn-block.btn-sm Send
+            // /.post
+            // Post
+            .post
+              .user-block
+                img.img-circle.img-bordered-sm(src='/libs/AdminLTE/dist/img/user6-128x128.jpg', alt='user image')                     
+                span.username
+                  a(href='#') Adam Jones                    
+                  a.pull-right.btn-box-tool(href='#')
+                    i.fa.fa-times                
+                span.description Posted 5 photos - 5 days ago
+              // /.user-block
+              .row.margin-bottom
+                .col-sm-6
+                  img.img-responsive(src='/libs/AdminLTE/dist/img/photo1.png', alt='Photo')
+                // /.col
+                .col-sm-6
+                  .row
+                    .col-sm-6
+                      img.img-responsive(src='/libs/AdminLTE/dist/img/photo2.png', alt='Photo')                          
+                      br                           
+                      img.img-responsive(src='/libs/AdminLTE/dist/img/photo3.jpg', alt='Photo')
+                    // /.col
+                    .col-sm-6
+                      img.img-responsive(src='/libs/AdminLTE/dist/img/photo4.jpg', alt='Photo')                           
+                      br                         
+                      img.img-responsive(src='/libs/AdminLTE/dist/img/photo1.png', alt='Photo')
+                    // /.col
+                  // /.row
+                // /.col
+              // /.row
+              ul.list-inline
+                li
+                  a.link-black.text-sm(href='#')
+                    i.fa.fa-share.margin-r-5
+                    |  Share                  
+                li
+                  a.link-black.text-sm(href='#')
+                    i.fa.fa-thumbs-o-up.margin-r-5
+                    |  Like                
+                li.pull-right
+                  a.link-black.text-sm(href='#')
+                    i.fa.fa-comments-o.margin-r-5
+                    |  Comments (5)               
+              input.form-control.input-sm(type='text', placeholder='Type a comment')
+            // /.post
+          // /.tab-pane
+          #timeline.tab-pane
+            // The timeline
+            ul.timeline.timeline-inverse
+              // timeline time label
+              li.time-label
+                span.bg-red
+                  | 10 Feb. 2014
+              // /.timeline-label
+              // timeline item
+              li
+                i.fa.fa-envelope.bg-blue                    
+                .timeline-item
+                  span.time
+                    i.fa.fa-clock-o
+                    |  12:05                     
+                  h3.timeline-header
+                    a(href='#') Support Team
+                    |  sent you an email                    
+                  .timeline-body
+                    | Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
+                    | weebly ning heekya handango imeem plugg dopplr jibjab, movity
+                    | jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
+                    | quora plaxo ideeli hulu weebly balihoo...                  
+                  .timeline-footer
+                    a.btn.btn-primary.btn-xs Read more                       
+                    a.btn.btn-danger.btn-xs Delete
+              // END timeline item
+              // timeline item
+              li
+                i.fa.fa-user.bg-aqua                      
+                .timeline-item
+                  span.time
+                    i.fa.fa-clock-o
+                    |  5 mins ago                    
+                  h3.timeline-header.no-border
+                    a(href='#') Sarah Young
+                    |  accepted your friend request
+              // END timeline item
+              // timeline item
+              li
+                i.fa.fa-comments.bg-yellow              
+                .timeline-item
+                  span.time
+                    i.fa.fa-clock-o
+                    |  27 mins ago                    
+                  h3.timeline-header
+                    a(href='#') Jay White
+                    |  commented on your post               
+                  .timeline-body
+                    | Take me to your leader!
+                    | Switzerland is small and neutral!
+                    | We are more like Germany, ambitious and misunderstood!                    
+                  .timeline-footer
+                    a.btn.btn-warning.btn-flat.btn-xs View comment
+              // END timeline item
+              // timeline time label
+              li.time-label
+                span.bg-green
+                  | 3 Jan. 2014
+              // /.timeline-label
+              // timeline item
+              li
+                i.fa.fa-camera.bg-purple                     
+                .timeline-item
+                  span.time
+                    i.fa.fa-clock-o
+                    |  2 days ago                     
+                  h3.timeline-header
+                    a(href='#') Mina Lee
+                    |  uploaded new photos                       
+                  .timeline-body
+                    img.margin(src='http://placehold.it/150x100', alt='...')                      
+                    img.margin(src='http://placehold.it/150x100', alt='...')                        
+                    img.margin(src='http://placehold.it/150x100', alt='...')                        
+                    img.margin(src='http://placehold.it/150x100', alt='...')
+              // END timeline item
+              li
+                i.fa.fa-clock-o.bg-gray
+          // /.tab-pane
+          #settings.tab-pane
+            form.form-horizontal
+              .form-group
+                label.col-sm-2.control-label(for='inputName') Name               
+                .col-sm-10
+                  input#inputName.form-control(type='email', placeholder='Name')                    
+              .form-group
+                label.col-sm-2.control-label(for='inputEmail') Email                 
+                .col-sm-10
+                  input#inputEmail.form-control(type='email', placeholder='Email')                 
+              .form-group
+                label.col-sm-2.control-label(for='inputName') Name                    
+                .col-sm-10
+                  input#inputName.form-control(type='text', placeholder='Name')                 
+              .form-group
+                label.col-sm-2.control-label(for='inputExperience') Experience            
+                .col-sm-10
+                  textarea#inputExperience.form-control(placeholder='Experience')              
+              .form-group
+                label.col-sm-2.control-label(for='inputSkills') Skills                    
+                .col-sm-10
+                  input#inputSkills.form-control(type='text', placeholder='Skills')               
+              .form-group
+                .col-sm-offset-2.col-sm-10
+                  .checkbox
+                    label
+                      input(type='checkbox')
+                      |  I agree to the 
+                      a(href='#') terms and conditions      
+              .form-group
+                .col-sm-offset-2.col-sm-10
+                  button.btn.btn-danger(type='submit') Submit

@@ -2,26 +2,11 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 var ObjectId = Schema.Types.ObjectId
 
-var OrderSchema = new Schema({
-  user: [{type: ObjectId, ref: 'User'}],
-  ground: [{type: ObjectId, ref: 'Ground'}],
-  money:Number,
-  pay:{
-    type:Number,
-    default:0 //1-完成支付
-  },
-  status:{
-    type:Number,
-    default:0 //1-已使用 8-完成结算
-  },
-  begin:{
-      type: Date,
-      default: Date.now()
-  },
-  end:{
-      type: Date,
-      default: Date.now()
-  },
+var GroundSchema = new Schema({
+  field: {type: ObjectId, ref: 'Field'},
+  program: {type: ObjectId, ref: 'Program'},
+  name:String,
+  hidden: Boolean,
   remark:{
     type:String,
     default:'没有说明内容'
@@ -38,7 +23,7 @@ var OrderSchema = new Schema({
   }
 })
 
-OrderSchema.pre('save', function(next) {
+GroundSchema.pre('save', function(next) {
   if (this.isNew) {
     this.meta.createAt = this.meta.updateAt = Date.now()
   }
@@ -49,11 +34,11 @@ OrderSchema.pre('save', function(next) {
   next()
 })
 
-OrderSchema.statics = {
+GroundSchema.statics = {
   fetch: function(cb) {
     return this
       .find({})
-      .sort('meta.createAt')
+      .sort('meta.updateAt')
       .exec(cb);
   },
   findById: function(id, cb) {
@@ -63,4 +48,4 @@ OrderSchema.statics = {
   }
 }
 
-module.exports = OrderSchema
+module.exports = GroundSchema
