@@ -5,7 +5,13 @@ var ObjectId = Schema.Types.ObjectId
 var GroundSchema = new Schema({
   field: {type: ObjectId, ref: 'Field'},
   program: {type: ObjectId, ref: 'Program'},
-  name:String,
+  name:String,//场地名称
+  business_hours:{
+    business_hours_start:String,
+    business_hours_end:String
+  },//营业时间
+  duration:Number,//运动时长
+  price:Number,//统一金额
   hidden: Boolean,
   remark:{
     type:String,

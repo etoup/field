@@ -20,6 +20,7 @@ var FieldSchema = new Schema({
     default: 50  //50-普通；80-高级
   },
   program: [{ type: ObjectId, ref: 'Program' }],
+  setting:[],
   remark:{
     type:String,
     default:'没有说明内容'
@@ -82,6 +83,7 @@ FieldSchema.statics = {
   findById: function(id, cb) {
     return this
       .findOne({_id: id})
+      .populate('program', 'title icon')
       .exec(cb);
   },
   findByMobile: function(mobile, cb) {

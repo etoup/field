@@ -10,5 +10,5 @@ module.exports = function(app) {
   })
   // 后台首页
   app.get('/field', midware.signinRequired,index.index);
-  
+  app.post('/field/index/addprogram', midware.signinRequired,index.addprogram);
 }
